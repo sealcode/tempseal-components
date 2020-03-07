@@ -15,7 +15,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://hub.sealcode.org/source/html-js-components/"
+		"url": "https://hub.sealcode.org/source/tempseal-components/"
 	},
 	"author": "Sealcode",
 	"license": "ISC",
