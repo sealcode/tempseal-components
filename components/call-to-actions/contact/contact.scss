@@ -1,0 +1,44 @@
+$icons: location phone mail;
+
+address {
+	font-style: normal;
+}
+
+.contact {
+	padding: 1rem;
+	background-color: $colors-primary;
+	color: $colors-body-text-on-primary;
+	& a {
+		text-decoration: none;
+		color: $colors-body-text-on-primary;
+		@include font("body", 500);
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	max-width: 15rem;
+	display: grid;
+	grid-template-columns: 1rem 1fr;
+	grid-gap: 2rem px-to-rem(53);
+
+	&__icon {
+		width: 1rem;
+		height: 1.25rem;
+		display: block;
+		background-size: 1rem 1.25rem;
+
+		&--mail-icon {
+			width: px-to-rem(33);
+			height: 1rem;
+			background-size: px-to-rem(33) 1rem;
+		}
+	}
+}
+
+@each $icon in $icons {
+	.contact__icon--#{$icon}-icon {
+		background-image: url(asset("./#{$icon}.svg"));
+		background-repeat: no-repeat;
+		background-position: center;
+	}
+}

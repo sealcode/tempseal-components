@@ -1,0 +1,50 @@
+$brightness-change: 10%;
+
+$alto-gray: #aaa;
+
+.button {
+	margin: 0.35rem;
+	font-size: px-to-rem(16);
+	font-weight: bold;
+	padding: calc(0.65rem - 1px) 1rem;
+	text-align: center;
+	display: inline-block;
+	font-family: "Inter UI", sans-serif;
+	line-height: 1rem;
+	background-color: $colors-primary;
+	color: white;
+	border: 1px solid $alto-gray;
+	cursor: pointer;
+	transition: background-color 0.2s;
+	text-decoration: none;
+
+	&:hover {
+		background-color: lighten($colors-primary, $brightness-change);
+	}
+	&:focus {
+		outline: 5px dotted $alto-gray;
+	}
+
+	&::after {
+		content: " \/";
+		padding-left: 1.5rem;
+	}
+
+	&--primary {
+		border: none;
+		background-color: $colors-primary;
+		color: $colors-body-text-on-primary;
+		&:hover {
+			background-color: lighten($colors-secondary, $brightness-change);
+		}
+	}
+
+	&--secondary {
+		border: none;
+		background-color: $colors-secondary;
+		color: $colors-body-text-on-secondary;
+		&:hover {
+			background-color: lighten($colors-secondary, $brightness-change);
+		}
+	}
+}

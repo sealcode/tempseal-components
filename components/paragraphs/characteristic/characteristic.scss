@@ -1,0 +1,154 @@
+.characteristic-component {
+	.characteristic {
+		background-color: $colors-primary;
+		color: $colors-body-text-on-primary;
+		display: flex;
+		justify-content: center;
+		padding: 7rem 2rem;
+		&__center-wrapper {
+			flex: 100%;
+			max-width: 46.6rem;
+		}
+		h2 {
+			color: $colors-title-text-on-primary;
+			font-size: 3.75rem;
+			line-height: 4rem;
+		}
+		&__philosophy-and-operate {
+			display: flex;
+			margin-top: 0.25rem;
+			margin-bottom: 6.5rem;
+			flex-wrap: wrap;
+		}
+
+		&__philosophy,
+		&__operate {
+			flex: 0 50%;
+		}
+
+		&__operate {
+			max-width: 24rem;
+		}
+		p {
+			line-height: 1.4rem;
+			color: $colors-body-text-on-primary;
+			font-size: calc(20rem / 24);
+		}
+	}
+
+	.our-philosophy__table {
+		display: flex;
+		flex-wrap: wrap;
+		flex: 100%;
+		margin: 0 0 1.1rem 0;
+		padding: 0;
+	}
+	.our-philosophy__title {
+		font-weight: bold;
+		text-transform: uppercase;
+	}
+	.cell {
+		box-sizing: border-box;
+		width: 100%;
+		padding: 1rem 0.5em;
+		overflow: hidden;
+		list-style: none;
+		border-bottom: solid 0.25px #e6e2c9;
+
+		&.our-philosophy__number {
+			width: 15%;
+			font-size: calc(20rem / 24);
+		}
+
+		&.our-philosophy__title {
+			width: 100%;
+			color: $colors-body-text-on-primary;
+			span {
+				font-size: calc(20rem / 24);
+			}
+		}
+		&.our-philosophy__description {
+			width: 100%;
+			padding-left: 4rem;
+			letter-spacing: -0.5px;
+			color: $colors-body-text-on-primary;
+
+			span {
+				font-size: calc(20rem / 24);
+			}
+		}
+	}
+}
+
+.row {
+	display: flex;
+	flex: 100%;
+}
+
+.row:first-child {
+	border-top: solid 0.25px #e6e2c9;
+}
+
+@media only screen and (max-width: 960px) {
+	.characteristic-component {
+		.characteristic {
+			&__philosophy-and-operate {
+				text-align: center;
+				justify-content: center;
+				margin-bottom: 5rem;
+			}
+			&__operate,
+			&__philosophy {
+				flex: 0 100%;
+			}
+			&__philosophy {
+				margin-bottom: 2rem;
+				br {
+					display: none;
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 720px) {
+	.characteristic-component {
+		.characteristic {
+			text-align: center;
+		}
+		.row {
+			flex-wrap: wrap;
+		}
+		.cell {
+			width: 100%;
+			text-align: left;
+			flex-grow: 1;
+		}
+		.cell {
+			&.our-philosophy__number {
+				border: none;
+				padding: 1rem 0.5rem 0.25rem;
+			}
+			&.our-philosophy__title {
+				width: 85%;
+				border: none;
+				padding: 1rem 0.5rem 0.25rem;
+			}
+			&.our-philosophy__description {
+				width: 100%;
+				padding: 0.25rem 0.5rem 1rem;
+			}
+		}
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.characteristic-component {
+		.characteristic {
+			h2 {
+				font-size: 2.8rem;
+				line-height: 1.2;
+			}
+		}
+	}
+}

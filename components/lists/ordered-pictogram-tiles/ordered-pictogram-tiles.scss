@@ -1,0 +1,136 @@
+$modes: primary secondary white;
+
+.pictogram-tiles {
+	max-width: $layout-container-width;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-column-gap: 2rem;
+	grid-auto-rows: minmax(px-to-rem(168), auto);
+	grid-row-gap: 1rem;
+	margin: 1rem auto;
+	padding: 0 1rem;
+
+	&__tile {
+		grid-row: span 2;
+		list-style: none;
+	}
+
+	&__tile:nth-child(even) {
+		grid-column: 1;
+	}
+
+	&__tile:nth-child(odd) {
+		grid-column: 2;
+	}
+
+	&__tile:only-child {
+		grid-column: 1 / span 2;
+		max-width: px-to-rem(560);
+		margin: 0 auto;
+	}
+
+	&__content {
+		display: grid;
+		grid-template-rows: 1fr auto;
+		grid-row-gap: 1rem;
+		padding: 2rem;
+	}
+
+	&__upperSection {
+		display: flex;
+		justify-content: space-between;
+		span {
+			@include font("title", 800);
+			font-size: 1.5rem;
+			line-height: 2rem;
+			padding-bottom: calc(1rem - 1px);
+			border-bottom: 1px solid #000000;
+		}
+		img {
+			align-self: flex-start;
+		}
+	}
+
+	&__lowerSection {
+		display: grid;
+		grid-template-rows: minmax(3rem, auto) auto;
+		h3 {
+			grid-row: 1;
+			font-size: 1rem;
+			line-height: 1.25rem;
+			@include font("body", 400);
+			align-self: center;
+		}
+		p {
+			grid-row: 2;
+		}
+	}
+
+	@each $color in $modes {
+		&__tile--#{$color} {
+			background-color: map-get($colors, $color);
+		}
+
+		&__tile--#{$color} &__upperSection {
+			span {
+				color: map-get($colors, title-text-on-#{$color});
+				border-color: hsl(287.3, 13.1%, 50.8%);
+			}
+		}
+
+		&__tile--#{$color} &__lowerSection {
+			h3 {
+				color: map-get($colors, title-text-on-#{$color});
+			}
+			p {
+				color: map-get($colors, body-text-on-#{$color});
+			}
+		}
+	}
+
+	&__tile--white {
+		box-shadow: 0.5rem 0.5rem 0 0 rgba(0, 0, 0, 0.06);
+	}
+
+	&__tile--white &__upperSection {
+		span {
+			border-color: $colors-gray-06;
+		}
+	}
+
+	&__tile--white &__lowerSection {
+		p {
+			color: $colors-gray-03;
+		}
+	}
+}
+
+@media (max-width: 880px) {
+	.pictogram-tiles {
+		grid-template-columns: auto;
+		&__tile {
+			max-width: px-to-rem(504);
+			margin: 0 auto;
+		}
+		&__tile:nth-child(odd) {
+			grid-column: auto;
+		}
+
+		&__tile:nth-child(even) {
+			grid-column: auto;
+		}
+	}
+}
+
+@media (max-width: 440px) {
+	.pictogram-tiles {
+		padding: 0;
+		&__content {
+			padding: 2rem 1rem;
+		}
+
+		&__tile--white {
+			box-shadow: none;
+		}
+	}
+}

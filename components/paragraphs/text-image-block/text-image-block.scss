@@ -1,0 +1,152 @@
+.tib {
+	background-color: $colors-gray-09;
+	overflow: hidden;
+	padding-bottom: 3rem;
+
+	&__body {
+		max-width: $layout-container-width;
+		margin: 0 auto;
+		padding: 0rem 0 2rem;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+
+		&--image-on-right {
+			flex-direction: row;
+		}
+
+		&--image-on-left {
+			flex-direction: row-reverse;
+		}
+	}
+
+	&__body-left {
+		padding: 1rem 1rem 0 1rem;
+		width: 52%;
+	}
+
+	&__body-right {
+		width: 44%;
+		margin-right: 2rem;
+	}
+
+	h2 {
+		color: $colors-title-text-on-white;
+		font-size: px-to-rem(37);
+		line-height: 2rem;
+		margin: 0 0 1rem;
+	}
+
+	h3 {
+		line-height: 1rem;
+		font-size: px-to-rem(19);
+		margin: 0 0 1rem;
+	}
+
+	p {
+		color: $colors-body-text-on-white;
+	}
+
+	img {
+		width: 100%;
+		margin: 1rem 1rem 0 1rem;
+	}
+
+	hr {
+		height: 1px;
+		background-color: #dbdbdb;
+		max-width: $layout-container-width;
+		width: 100%;
+		margin: 0 auto;
+		border: none;
+	}
+
+	@media (min-width: 1560px) and (max-width: 2000px) {
+		img {
+			margin-left: 1.5rem;
+		}
+	}
+
+	@media (max-width: 1559px) {
+		&__body-left,
+		&__body-right {
+			width: 48%;
+		}
+
+		img {
+			max-height: 19rem;
+		}
+	}
+
+	@media (max-width: 930px) {
+		&__body--image-on-right {
+			h2 {
+				width: calc(100vw - 4rem);
+			}
+		}
+
+		img {
+			margin-top: 4rem;
+		}
+	}
+
+	@media (max-width: 800px) {
+		&__body {
+			flex-wrap: wrap;
+			max-width: 24rem;
+		}
+
+		&__body-left {
+			width: 100%;
+			margin: 0 0 1rem;
+		}
+
+		&__body-right {
+			margin-right: 0;
+			max-width: 576px;
+			width: 100%;
+		}
+
+		img {
+			margin-top: 0;
+			max-width: 100%;
+		}
+
+		h2 {
+			font-size: px-to-rem(30);
+			width: auto;
+		}
+	}
+	@media (max-width: 620px) {
+		&__body-left {
+			text-align: center;
+		}
+
+		img {
+			max-width: none;
+			width: 582px;
+			margin: 0;
+		}
+	}
+
+	@media (max-width: 579px) {
+		&__body-right {
+			overflow-x: scroll;
+			overflow-y: hidden;
+		}
+	}
+
+	@media (max-width: 500px) {
+		h2 {
+			font-size: px-to-rem(27);
+			line-height: 1rem;
+		}
+		&__body {
+			padding: 0 0 2rem;
+		}
+
+		h3 {
+			font-size: px-to-rem(18);
+		}
+	}
+}

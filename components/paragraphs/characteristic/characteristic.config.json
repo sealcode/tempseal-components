@@ -1,0 +1,54 @@
+{
+	"context": {
+		"title": "Lorem<br/> ipsum",
+		"text": "Morbi mattis nisl eget quam molestie, sit amet euismod ante placerat.",
+		"features": [
+			{
+				"number": "01",
+				"title": "Duis",
+				"description": "Vivamus pretium velit eget erat rutrum, vel vehicula nunc finibus"
+			},
+			{
+				"number": "02",
+				"title": "Vehicula",
+				"description": "Duis ullamcorper lacus vitae orci elementum aliquam"
+			},
+			{
+				"number": "03",
+				"title": "Lectus",
+				"description": "Duis luctus enim eu commodo rutrum"
+			},
+
+			{
+				"number": "04",
+				"title": "Ante",
+				"description": "Proin eget dolor ut eros consequat aliquam vitae et nisl"
+			},
+			{
+				"number": "05",
+				"title": "Et lacinia",
+				"description": "Quisque commodo massa sed nisl egestas vehicula"
+			},
+			{
+				"number": "06",
+				"title": "Justo",
+				"description": "Cras quis leo dictum, pretium enim vitae, fringilla nibh"
+			},
+			{
+				"number": "07",
+				"title": "Praesent",
+				"description": "Donec fringilla purus a erat imperdiet, nec tempor metus mollis"
+			},
+			{
+				"number": "08",
+				"title": "Enim",
+				"description": "Nulla porta magna et lectus maximus ultrices"
+			},
+			{
+				"number": "09",
+				"title": "Sem",
+				"description": "Sed eu risus at elit ullamcorper finibus a at felis"
+			}
+		]
+	}
+}

@@ -1,0 +1,58 @@
+.quote {
+	max-width: 1280px;
+	margin: 0 auto;
+	padding: 3rem 0 2rem 0;
+
+	&__container {
+		margin: 0 1rem 0 1rem;
+		&__paragraph {
+			display: flex;
+			justify-content: center;
+
+			&--left {
+				width: 32px;
+				height: 27px;
+			}
+			&--right {
+				width: 32px;
+				height: 27px;
+				align-self: flex-end;
+				transform: rotate(180deg);
+			}
+
+			p {
+				margin: 0 1rem;
+			}
+		}
+		&--autor {
+			margin-top: 3rem;
+			margin-right: 1rem;
+
+			p {
+				font-weight: bold;
+				max-width: 32rem;
+				text-align: end;
+				margin: 0 auto;
+				color: $colors-body-text-on-white;
+			}
+		}
+	}
+
+	@media (max-width: 450px) {
+		&__container {
+			margin: -1rem 0.5rem 0 0.5rem;
+			position: relative;
+		}
+		&__container__paragraph {
+			img {
+				opacity: 0.5;
+				z-index: 0;
+			}
+
+			p {
+				margin: 0 -0.5rem 0 -0.5rem;
+				z-index: 1;
+			}
+		}
+	}
+}

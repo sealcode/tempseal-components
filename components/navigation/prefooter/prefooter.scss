@@ -1,0 +1,49 @@
+.prefooter {
+	padding: 5.75rem calc(50vw - 22rem + 2rem) 5.5rem;
+	background-color: $colors-primary-03;
+
+	&__container {
+		padding: 0 0.5rem;
+	}
+
+	&__small-text,
+	&__large-text {
+		margin: 0 auto;
+		text-align: center;
+		display: block;
+		max-width: 24rem;
+		padding-left: 0;
+	}
+
+	&__small-text {
+		letter-spacing: -0.5px;
+		color: $colors-body-text-on-primary;
+	}
+
+	ul {
+		list-style-type: none;
+		padding: 0;
+
+		& li {
+			font-size: calc(20rem / 20);
+			line-height: 1.1rem;
+			margin-bottom: 0.5rem;
+			padding: 0;
+		}
+	}
+
+	&__large-text {
+		@include font("title", 800);
+		font-size: calc(46rem / 24);
+		line-height: 1.11;
+		color: $colors-title-text-on-primary;
+		font-weight: normal;
+		text-align: center;
+		text-transform: uppercase;
+		margin-top: 2rem;
+
+		&:first-child {
+			margin-top: 0;
+		}
+	}
+}

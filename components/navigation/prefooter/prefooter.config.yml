@@ -1,0 +1,7 @@
+context:
+        small_text_list:
+            [
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+                "Curabitur neque leo, luctus eu faucibus at, mattis congue neque.",
+            ]
+        large_text: "Ut ut ante id nisl placerat eleifend quis vitae justo."

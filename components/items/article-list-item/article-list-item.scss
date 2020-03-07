@@ -1,0 +1,128 @@
+$alto-gray: #ccc;
+
+.article-list-item {
+	background-color: $colors-primary;
+	padding: 1rem;
+
+	&__number {
+		display: block;
+		@include font("serif", 800);
+		font-feature-settings: "tnum"; // to keep them the same width
+		font-size: 1rem;
+		line-height: 1rem;
+		padding-bottom: calc(0.5rem - 1px);
+		border-bottom: 1px solid #000000;
+		margin-bottom: 0.5rem;
+	}
+
+	&__image {
+		padding-bottom: calc(1rem - 1px);
+		border-bottom: 1px solid #000000;
+		margin-bottom: 0.5rem;
+		img {
+			height: 2.5rem;
+		}
+	}
+
+	h3 {
+		font-size: px-to-rem(20);
+		line-height: 1rem;
+		@include font("slab", 400);
+	}
+
+	p {
+		@include font("sans", 400);
+		font-size: px-to-rem(15);
+		padding-top: 1rem;
+	}
+
+	&--above .header {
+		display: flex;
+		flex-flow: row;
+		padding-bottom: calc(0.4rem - 1px);
+		border-bottom: 1px solid #000000;
+		margin-bottom: 0.5rem;
+		h3 {
+			padding-top: 0.1rem;
+			margin-left: 0.5rem;
+		}
+	}
+	&--above &__number {
+		padding-bottom: 0;
+		border-bottom: none;
+		margin-bottom: 0;
+	}
+
+	&--above p {
+		padding-top: 0;
+	}
+
+	&--primary {
+		.header {
+			border-color: hsl(287.3, 13.1%, 50.8%);
+		}
+
+		.article-list-item__number {
+			color: $colors-title-text-on-primary;
+			border-color: hsl(287.3, 13.1%, 50.8%);
+		}
+
+		h3 {
+			color: $colors-title-text-on-primary;
+		}
+
+		p {
+			color: hsl(286.4, 15.5%, 72.2%);
+		}
+
+		.article-list-item__image {
+			border-color: hsl(287.3, 13.1%, 50.8%);
+		}
+
+		h3 {
+			color: $colors-title-text-on-primary;
+		}
+	}
+
+	&--white {
+		background-color: white;
+		.header {
+			border-color: $alto-gray;
+		}
+
+		&__number {
+			color: $colors-title-text-on-white;
+			border-color: $alto-gray;
+		}
+
+		.article-list-item__image {
+			border-color: $alto-gray;
+		}
+
+		h3 {
+			color: $colors-title-text-on-white;
+		}
+
+		p {
+			color: $alto-gray;
+		}
+	}
+
+	@media (max-width: 460px) {
+		&--above &__number {
+			display: block;
+			padding-left: 0;
+			border-bottom: 1px solid #000000;
+			padding-bottom: calc(0.5rem - 1px);
+			margin-bottom: 0.5rem;
+		}
+		&--above .header {
+			display: block;
+			border: none;
+			h3 {
+				margin-left: 0;
+				padding-top: 0;
+			}
+		}
+	}
+}

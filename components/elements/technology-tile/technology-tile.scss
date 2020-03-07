@@ -1,0 +1,20 @@
+.technology-tile {
+	height: 6rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	box-shadow: 0 0 0 1px $colors-gray-06;
+	background-color: white;
+
+	&:hover {
+		img {
+			filter: none;
+		}
+	}
+
+	img {
+		max-width: 50%;
+		filter: grayscale(50%);
+		transition: filter 200ms;
+	}
+}

@@ -1,0 +1,35 @@
+variants:
+    - name: Grayscale Image
+      context:
+              img_color_mode: "grayscale"
+    - name: Normal Image
+      context:
+              img_color_mode: "normal"
+    - name: Image on the right side
+      context:
+              img_side: "right"
+
+    - name: With shape-outside
+      context:
+              shape_outside: true
+
+    - name: With shape-outside and image on right side
+      context:
+              shape_outside: true
+              img_side: "right"
+    - name: Without button
+      context:
+              btn_config: null
+
+context:
+    img_direction: "left"
+    header_text: "Lorem ipsum dolor sit amet"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
+    btn_text: "Lorem Ipsum"
+    btn_color: "white"
+    btn_link: "#"
+    img_color_mode: "normal"
+    btn_config:
+        text: "Lorem Ipsum"
+        color: "white"
+        link: "#"

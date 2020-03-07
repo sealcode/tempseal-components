@@ -1,0 +1,133 @@
+.nice-header {
+	max-width: $layout-container-width;
+	margin: auto;
+	padding: 1rem;
+	display: flex;
+	align-items: center;
+	flex-flow: wrap;
+
+	.photo-in-logo {
+		width: 100%;
+		text-align: center;
+		max-width: px-to-rem(560);
+		flex-grow: 1;
+		margin: 0 auto;
+
+		img {
+			max-width: calc(14rem * 506 / 392);
+		}
+	}
+
+	&--image-on-left {
+		flex-direction: row;
+	}
+
+	&--image-on-right {
+		flex-direction: row-reverse;
+	}
+
+	&--shaped {
+		display: block;
+		max-width: px-to-rem(1120);
+		&.nice-header--image-on-right {
+			.photo-in-logo {
+				float: right;
+			}
+		}
+
+		&.nice-header--image-on-left {
+			.photo-in-logo {
+				float: left;
+			}
+		}
+
+		.photo-in-logo {
+			margin-bottom: 0;
+			shape-outside: polygon(
+				65% 0,
+				35% 0,
+				0 50%,
+				35% 100%,
+				65% 100%,
+				100% 50%
+			);
+		}
+	}
+
+	&__description {
+		min-width: px-to-rem(420);
+		text-align: center;
+		padding: 1rem 2rem 1rem 2rem;
+		padding-left: 2rem;
+		padding-right: 2rem;
+		flex: 1;
+
+		h2 {
+			max-width: px-to-rem(784);
+			font-size: 1.5rem;
+			line-height: 2rem;
+			margin: 0 0 1rem;
+			text-align: left;
+			@include font("title", 800);
+		}
+
+		p {
+			max-width: px-to-rem(1120);
+			color: $colors-gray-08;
+			margin: 0 auto;
+			line-height: 24px;
+			font-size: px-to-rem(15);
+			text-align: left;
+			@include font("body", 400);
+		}
+
+		.button {
+			margin-top: 1rem;
+		}
+	}
+
+	&__description::after {
+		content: " ";
+		display: block;
+		clear: both;
+	}
+}
+
+@media (max-width: 821px) {
+	.nice-header {
+		.photo-in-logo {
+			max-width: px-to-rem(410);
+			padding: 0 1rem;
+			margin-bottom: 1rem;
+		}
+	}
+}
+
+@media (max-width: 700px) {
+	.nice-header {
+		&--shaped {
+			.photo-in-logo {
+				float: none !important;
+				margin: 0 auto 1rem auto;
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	.nice-header {
+		&__description {
+			h2 {
+				text-align: center;
+			}
+			p {
+				text-align: center;
+			}
+			padding-left: 0;
+			padding-right: 0;
+			min-width: 5rem;
+			padding: 0;
+			min-width: px-to-rem(140);
+		}
+	}
+}

@@ -1,0 +1,54 @@
+.ordered-blocks {
+	padding-bottom: 4rem;
+	position: relative;
+
+	ol {
+		list-style-type: none;
+		padding: 0;
+	}
+
+	&__bg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		z-index: -1;
+
+		.wave {
+			height: 6rem;
+		}
+	}
+
+	&__body {
+		max-width: $layout-container-width;
+		margin: 0 auto;
+		position: relative;
+		z-index: 2;
+	}
+
+	&__article-list {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(36ch, 1fr));
+		padding: 0 1rem;
+	}
+
+	&__buttons {
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+	}
+
+	&__button-wrapper {
+		text-align: center;
+	}
+
+	@media (max-width: 400px) {
+		&__article-list {
+			display: block;
+			max-width: 100%;
+			padding: 0 0;
+			margin: auto;
+		}
+	}
+}

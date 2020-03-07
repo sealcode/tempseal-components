@@ -1,0 +1,7 @@
+context:
+    name: "John Doe"
+    address: "Address 133/7"
+    post_code: "11-111"
+    city: "Tokyo"
+    phone_number: +48 133 337 000
+    email: foo@bar.baz

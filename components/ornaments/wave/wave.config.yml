@@ -1,0 +1,10 @@
+variants:
+    - name: default
+      context:
+         rotated: true
+    - name: flip horizontally
+      context:
+          rotated: true
+
+context:
+  rotated: false

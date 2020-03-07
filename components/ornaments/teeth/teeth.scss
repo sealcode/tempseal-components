@@ -1,0 +1,16 @@
+.teeth-container {
+	width: 100%;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-template-rows: 3rem;
+	.teeth {
+		&--left {
+			grid-column: 1;
+			background-color: var(--color_left);
+		}
+		&--right {
+			grid-column: 2;
+			background-color: var(--color_right);
+		}
+	}
+}

@@ -1,0 +1,136 @@
+@mixin paragraph() {
+	max-width: 60ch;
+	padding-right: 2rem;
+	padding-left: 2rem;
+	margin-top: 1rem;
+	font-size: px-to-rem(16);
+	color: $colors-body-text-on-white;
+	text-align: left;
+}
+
+@mixin sticky_caption() {
+	position: -webkit-sticky;
+	position: sticky;
+	display: block;
+}
+
+.header-lead-paragraph {
+	max-width: $layout-container-width;
+	margin: 0 auto;
+	@include font("body", 400);
+	padding-bottom: 4rem;
+
+	&--sticky {
+		display: grid;
+		grid-template-columns: 30% 70%;
+
+		.header-lead-paragraph__caption {
+			grid-column: 1;
+			grid-row: 1 / span 2;
+			padding-right: 0;
+
+			&--no_navbar {
+				top: 0;
+				@include sticky_caption;
+			}
+
+			&--is_navbar {
+				// top: $navbar-height;
+				@include sticky_caption;
+			}
+		}
+
+		.header-lead-paragraph__description,
+		.header-lead-paragraph__description-box {
+			grid-column: 2;
+
+			p {
+				@include paragraph;
+			}
+		}
+	}
+
+	&--float {
+		display: flex;
+		flex-flow: wrap;
+		justify-content: space-around;
+		align-items: center;
+
+		.header-lead-paragraph__caption {
+			max-width: 17rem;
+			flex-basis: 38%;
+			flex-grow: 1;
+		}
+
+		.header-lead-paragraph__description {
+			flex-basis: 18rem;
+			flex-grow: 1;
+			flex-flow: column;
+			display: flex;
+			align-items: center;
+		}
+
+		.header-lead-paragraph__description p,
+		.header-lead-paragraph__description-box p {
+			@include paragraph;
+			padding-right: 1rem;
+			padding-left: 1rem;
+		}
+	}
+
+	&__caption {
+		flex-basis: 10rem;
+		flex-grow: 1;
+		padding-left: 1rem;
+		padding-right: 1rem;
+
+		hr {
+			height: 2px;
+			border: none;
+			background-color: #ccc;
+			width: 100%;
+			margin: 0 0 1rem;
+		}
+
+		h3 {
+			font-size: px-to-rem(26);
+			text-align: left;
+			color: $colors-secondary-04;
+			margin-bottom: 1rem;
+		}
+
+		p {
+			font-size: px-to-rem(16);
+			font-weight: bold;
+			text-align: left;
+		}
+	}
+}
+
+@media (max-width: 825px) {
+	.header-lead-paragraph {
+		grid-template-columns: 100%;
+
+		.header-lead-paragraph__caption {
+			max-width: 19rem;
+			padding-left: 1rem;
+			padding-right: 1rem;
+			h3 {
+				font-size: px-to-rem(24);
+			}
+			p {
+				font-size: px-to-rem(14);
+			}
+		}
+
+		.header-lead-paragraph__description,
+		.header-lead-paragraph__description-box {
+			grid-column: 1;
+			p {
+				font-size: px-to-rem(14);
+				padding-right: 1rem;
+				padding-left: 1rem;
+			}
+		}
+	}
+}

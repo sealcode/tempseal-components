@@ -1,0 +1,37 @@
+{
+	"name": "@sealcode/tempseal-components",
+	"version": "0.1.0",
+	"main": "./main.js",
+	"files": [
+		"**/*.js",
+		"**/*.d.ts",
+		"components/**/*.*"
+	],
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"docs": "fractal start",
+		"build": "tsc --declaration",
+		"watch": "npm run build -- --watch"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://hub.sealcode.org/source/html-js-components/"
+	},
+	"author": "Sealcode",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@frctl/mandelbrot": "^1.2.1",
+		"@sealcode/obfuscate-html-attr": "^1.0.0",
+		"@types/sharp": "^0.24.0",
+		"bluebird": "^3.7.2",
+		"rxjs": "^6.5.4",
+		"sharp": "^0.24.1"
+	},
+	"devDependencies": {
+		"@frctl/fractal": "^1.2.1",
+		"@types/bluebird": "^3.5.30",
+		"typescript": "^3.8.2"
+	},
+	"types": "./main.d.ts"
+}

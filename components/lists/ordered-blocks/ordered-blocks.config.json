@@ -1,0 +1,52 @@
+{
+	"context": {
+		"list_items": [
+			{
+				"name": "Lorem ipsum",
+				"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+				"modifier": "white"
+			},
+			{
+				"name": "Donec at purus quis risus elementum tempor",
+				"description": "Nulla tempor risus et eros interdum elementum. Aliquam eget sollicitudin lorem. Nam ultricies venenatis sagittis.",
+				"modifier": "white"
+			},
+			{
+				"name": "Vivamus vestibulum",
+				"description": "Nullam at eros pellentesque, sagittis ipsum at, ultricies urna. Nulla lectus turpis, maximus ut orci vel, tempor lacinia turpis. Duis dapibus sodales mi, eget vulputate lorem tincidunt nec.",
+				"modifier": "white"
+			}
+		],
+		"btn_config": {
+			"enabled": true,
+			"text": "Napisz do nas",
+			"color": "cyan",
+			"href": "example.com"
+		}
+	},
+	"variants": [
+		{
+			"name": "above",
+			"context": {
+				"header_mode": "above"
+			}
+		},
+		{
+			"name": "default",
+			"label": "Below",
+			"context": {
+				"header_mode": "below"
+			}
+		},
+		{
+			"name": "two buttons",
+			"context": {
+				"btn2_config": {
+					"text": "Dowiedz się więcej",
+					"color": "purple",
+					"href": "example.com"
+				}
+			}
+		}
+	]
+}

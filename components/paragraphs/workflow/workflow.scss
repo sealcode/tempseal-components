@@ -1,0 +1,70 @@
+.workflow {
+	padding: 4rem 2rem;
+
+	p {
+		font-size: 0.66rem;
+		line-height: 1.08rem;
+	}
+	h2 {
+		font-size: 2.75rem;
+		line-height: 3rem;
+		margin-bottom: 2rem;
+	}
+	img {
+		width: 100%;
+		height: auto;
+		max-width: 18rem;
+	}
+
+	&__inner-wraper {
+		display: flex;
+		flex-wrap: wrap;
+		max-width: 48.6rem;
+		margin: 0 auto;
+		align-items: center;
+		justify-content: center;
+	}
+	&__text,
+	&__image {
+		flex: 0 50%;
+	}
+	&__image {
+		padding: 2.5rem;
+	}
+	&__text {
+		padding-left: 1.5rem;
+	}
+}
+
+@media only screen and (max-width: 1020px) {
+	.workflow {
+		display: flex;
+		flex-direction: row;
+		padding-left: 0;
+		padding-right: 0;
+		padding-top: 4rem;
+		padding-bottom: 3rem;
+		align-items: center;
+
+		h2 {
+			font-size: 3.2rem;
+		}
+
+		&__text,
+		&__image {
+			flex: 100%;
+			align-items: center;
+			justify-content: center;
+			text-align: center;
+		}
+		&__image {
+			padding: 1rem;
+		}
+		&__text {
+			text-align: center;
+			margin-top: 2rem;
+			max-width: 22rem;
+			padding: 1rem;
+		}
+	}
+}

@@ -1,0 +1,120 @@
+.team {
+	.wrapper {
+		margin-top: 6rem;
+		margin-bottom: 2rem;
+		padding: 1rem;
+		max-width: 1100px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+}
+.the-team {
+	padding-bottom: 2rem;
+	max-width: 50rem;
+	margin: 0 auto;
+	h2 {
+		font-size: 3.75rem;
+	}
+}
+.members {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	margin: -1rem;
+}
+.team-member {
+	padding: 1rem;
+	width: 50%;
+	flex-flow: column;
+	display: flex;
+	max-width: calc(500px + 2rem);
+
+	&__image img {
+		max-width: 500px;
+		width: 100%;
+		height: auto;
+	}
+	&__name,
+	&__role {
+		font-size: calc(22rem / 24);
+		color: $colors-black;
+	}
+	&__name {
+		font-weight: bold;
+		padding-top: 1rem;
+		text-transform: uppercase;
+	}
+	&__role {
+		font-weight: normal;
+		padding-bottom: 0.5rem;
+	}
+	&__description {
+		color: $colors-black-02;
+		line-height: 1.63;
+		font-size: 0.666666rem;
+		flex-grow: 1;
+		padding-bottom: 0.83rem;
+		& p {
+			margin-top: 0;
+		}
+		&__label {
+			font-weight: 600;
+		}
+	}
+	&__email,
+	&__telephone {
+		color: $colors-black;
+		font-weight: bold;
+		font-size: 0.75rem;
+	}
+	&__telephone {
+		display: none;
+	}
+	&__email {
+		padding-bottom: 0.5rem;
+	}
+	&__digital-text {
+		white-space: nowrap;
+		margin: 0 1rem;
+	}
+
+	.social-icons {
+		img {
+			height: 18px;
+			margin-right: 1.25rem;
+		}
+	}
+}
+
+@media all and (max-width: 980px) {
+	.the-team h2 {
+		text-align: center;
+	}
+	.team-member {
+		width: 100%;
+		margin: auto;
+	}
+}
+
+@media (max-width: 500px) {
+	.team-member {
+		&__image {
+			margin: -1rem;
+			margin-bottom: 0rem;
+		}
+	}
+}
+
+@media all and (max-width: 480px) {
+	.the-team {
+		padding-left: 0rem;
+		margin-bottom: 1rem;
+		padding-bottom: 0;
+		h2 {
+			font-size: 3rem;
+		}
+	}
+	.team-member__email {
+		font-size: calc(14rem / 24);
+	}
+}

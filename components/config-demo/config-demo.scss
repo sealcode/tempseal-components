@@ -1,0 +1,17 @@
+$fonts: title body sans serif slab mono;
+
+@each $font in $fonts {
+	.font-#{$font} {
+		@include font($font, 400);
+	}
+}
+
+.color-tile {
+	height: 1rem;
+	width: 1rem;
+}
+
+.color-grid {
+	display: flex;
+	flex-flow: row wrap;
+}

@@ -1,0 +1,20 @@
+{
+	"variants": [
+		{
+			"name": "primary",
+			"context": {
+				"color": "primary"
+			}
+		},
+		{
+			"name": "secondary",
+			"context": {
+				"color": "secondary"
+			}
+		}
+	],
+	"context": {
+		"text": "Zobacz więcej",
+		"link": "https://www.sealcode.org/"
+	}
+}

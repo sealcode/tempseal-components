@@ -1,0 +1,11 @@
+variants:
+    - name: default
+      label: Background 1
+      context:
+              bg: "1"
+    - name: background_2
+      context:
+              bg: "2"
+context:
+        header_primary: "Cyfrowe rozwiązania, które"
+        header_secondary: "oszczędzają czas"

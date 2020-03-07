@@ -1,0 +1,11 @@
+context:
+    headline: "Lorem ipsum dolor sit amet, consectetur adipiscing elit"
+    contact_params:
+        name: "Company name"
+        address: "Street 1/2"
+        post_code: "00-321"
+        city: "City"
+        email: "example@address.com"
+        phone_number: "+12 345 678 910"
+    description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec placerat aliquam ipsum nec molestie. Nullam faucibus arcu nec pharetra aliquam."
+    email_address: "example@address.com"

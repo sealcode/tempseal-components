@@ -1,0 +1,37 @@
+.feature-tiles {
+	max-width: $layout-container-width;
+	margin: 0 auto;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	&__tile {
+		margin: 1rem 1rem;
+		display: flex;
+		flex-flow: column;
+		flex-basis: 11rem;
+		flex-grow: 1;
+		align-items: center;
+		img {
+			width: px-to-rem(65);
+			height: px-to-rem(63);
+			margin-top: calc(1rem - 18px);
+			margin-bottom: calc(1rem - 17px);
+		}
+		dt {
+			margin-top: 1rem;
+			font-size: 1rem;
+			@include font("title", 300);
+			line-height: 1rem;
+			text-align: center;
+		}
+		dd {
+			margin-top: 1rem;
+			max-width: 50ch;
+			@include font("body", 400);
+			font-size: calc(4rem / 7);
+			line-height: 1rem;
+			text-align: center;
+			color: $colors-body-text-on-white;
+		}
+	}
+}
