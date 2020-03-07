@@ -23,6 +23,7 @@
 	"dependencies": {
 		"@frctl/mandelbrot": "^1.2.1",
 		"@sealcode/obfuscate-html-attr": "^1.0.0",
+		"@sealcode/tempseal": "^0.1.3",
 		"@types/sharp": "^0.24.0",
 		"bluebird": "^3.7.2",
 		"rxjs": "^6.5.4",
