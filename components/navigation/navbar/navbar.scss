@@ -1,0 +1,504 @@
+$navbar-height: 4rem;
+$navbar-mobile-height: 3rem;
+$navbar-mobile-breakpoint: 900px;
+
+$variants: primary secondary white;
+
+@each $variant in $variants {
+	$this: ".navigation";
+	.navigation--#{$variant} {
+		background-color: map-get($colors, #{$variant});
+
+		$background: map-get($colors, #{$variant});
+		$text: map-get($colors, body-text-on-#{$variant});
+		$border: $text;
+
+		@media (max-width: $navbar-mobile-breakpoint) {
+			#{$this}__wrapper {
+				background: $background;
+			}
+			#{$this}__label {
+				background: $text;
+
+				&::before,
+				&::after {
+					background: $text;
+				}
+			}
+
+			#{$this}__caption {
+				color: $text;
+			}
+		}
+
+		#{$this}__logo-text {
+			fill: $text;
+		}
+
+		#{$this}__item {
+			&--in-touch {
+				a {
+					border: 1px solid $border;
+				}
+				a:hover,
+				a:focus {
+					background: $text;
+					border-color: $text;
+					span {
+						color: $background;
+					}
+				}
+			}
+		}
+
+		#{$this}__text {
+			color: $text;
+		}
+
+		#{$this}__icon-wrapper,
+		a {
+			outline-color: $text;
+		}
+	}
+}
+
+.navigation {
+	width: 100%;
+	height: $navbar-height;
+	padding: 0 1rem;
+	position: relative;
+
+	&__body {
+		display: flex;
+		align-items: center;
+		max-width: $layout-container-width;
+		margin: 0 auto;
+		height: 100%;
+	}
+
+	&__label,
+	&__icon-wrapper,
+	&__hamburger,
+	&__caption {
+		display: none;
+	}
+
+	&__header {
+		display: flex;
+		margin: 2px 0 0 2px;
+	}
+
+	&__logo {
+		width: 5.5rem;
+	}
+
+	&__wrapper {
+		display: flex;
+		justify-content: flex-end;
+		flex-grow: 1;
+		position: relative;
+		width: auto;
+		padding: 0;
+		max-width: none;
+		z-index: 2;
+	}
+
+	&__item {
+		position: relative;
+		list-style: none;
+		text-align: center;
+		font-weight: 600;
+
+		a {
+			outline: 0;
+			padding: 0.5rem 1rem;
+			display: inline-block;
+
+			&:hover span {
+				text-decoration: underline;
+			}
+		}
+
+		&--in-touch {
+			margin-left: 1rem;
+			cursor: pointer;
+			a {
+				transition: background 0.2s ease, border 0.2s ease,
+					color 0.2s ease;
+				display: flex;
+				height: 2rem;
+				padding: 0 1.15rem;
+				align-items: center;
+
+				&:hover,
+				&:focus {
+					span {
+						text-decoration: none;
+					}
+				}
+			}
+		}
+
+		& a:focus ~ &__bg {
+			opacity: 1;
+		}
+	}
+
+	&__input {
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		opacity: 0;
+		cursor: pointer;
+	}
+
+	&__input:focus ~ &__label {
+		background-color: red;
+	}
+
+	&__input:checked ~ &__label {
+		img {
+			transform: rotate(-180deg);
+		}
+	}
+
+	&__label[for="lang"] {
+		margin-left: -2px;
+		padding: 0 2px;
+		display: inline-block;
+	}
+
+	&__input:checked ~ &__submenu {
+		transform: scale(1, 1) translateY(7px) !important;
+		opacity: 1 !important;
+	}
+
+	&__label {
+		cursor: pointer;
+
+		img {
+			transition: all 0.2s ease;
+			vertical-align: middle;
+		}
+	}
+
+	&__text {
+		color: $colors-body-text-on-primary;
+	}
+
+	&__submenu {
+		transform-origin: top center;
+		position: absolute;
+		width: 4rem;
+		padding: 0;
+		left: -0.2rem;
+		list-style: none;
+		box-shadow: 1px 2px 5px 2px rgba(0, 0, 0, 0.02);
+		z-index: 10;
+		max-width: 100%;
+	}
+
+	&__submenu-item {
+		margin: 0;
+		background: #ffffff;
+		border-bottom: 1px solid #e1e5e7b7;
+		a {
+			padding: 0.4rem 1.5rem 0.4rem 0.4rem;
+			display: block;
+		}
+	}
+
+	@media (max-width: $navbar-mobile-breakpoint) {
+		display: block;
+		height: $navbar-mobile-height;
+
+		&__icon-wrapper {
+			position: absolute;
+			right: 22px;
+			top: 16px;
+			width: 1.5rem;
+			height: 1.7rem;
+			display: block;
+			font-size: px-to-rem(24);
+		}
+
+		&__hamburger {
+			position: absolute;
+			display: block;
+			right: 25px;
+			top: 18px;
+			width: 1.5em;
+			height: 1.85em;
+			opacity: 0;
+			cursor: pointer;
+			z-index: 12;
+			font-size: px-to-rem(24);
+		}
+
+		&__hamburger--for-keyboard:checked ~ &__icon-wrapper {
+			top: px-to-rem(16);
+			height: 2em;
+		}
+
+		&__hamburger--for-keyboard:focus ~ &__icon-wrapper {
+			outline-width: 2px;
+			outline-style: solid;
+		}
+
+		&__hamburger:checked ~ &__label {
+			background: transparent;
+			&:before {
+				transform: rotate(45deg) translate(1.5px, -0.33333em);
+			}
+			&:after {
+				transform: rotate(-45deg) translate(3px, 7.2px);
+			}
+		}
+		&__hamburger:checked ~ &__wrapper {
+			left: 0%;
+		}
+
+		&__hamburger:checked {
+			width: 1.3em;
+			right: 1.1em;
+			top: 0.6em;
+			height: 2em;
+		}
+
+		&__label {
+			display: block;
+			width: 1.5em;
+			height: 0.14em;
+			background: #000000;
+			position: absolute;
+			border-radius: 4em;
+			right: 0px;
+			top: 27px;
+			cursor: pointer;
+			margin-right: 25px;
+			transition: background 0.3s cubic-bezier(0.77, 0.2, 0.05, 1);
+			font-size: px-to-rem(24);
+
+			&:before,
+			&:after {
+				content: "";
+				position: absolute;
+				height: 0.14em;
+				border-radius: 4em;
+				width: 1.5em;
+				background: #000000;
+				transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+			}
+
+			&:before {
+				bottom: 0.33em;
+				transform-origin: 0% 0%;
+			}
+
+			&:after {
+				top: 0.33em;
+				transform-origin: 0% 100%;
+			}
+		}
+		&__caption {
+			display: block;
+			position: absolute;
+			text-transform: uppercase;
+			top: px-to-rem(42);
+			right: 1.1rem;
+			font-size: px-to-rem(11);
+			z-index: 11;
+		}
+
+		&__header {
+			position: relative;
+			z-index: 100;
+		}
+
+		&__wrapper {
+			display: block;
+			position: absolute;
+			background: #e3e9f1;
+			margin: 0;
+			width: 100%;
+			padding: 0;
+			font-size: 1.4rem;
+			overflow: auto;
+			top: $navbar-mobile-height;
+			height: calc(100vh - #{$navbar-mobile-height});
+			left: -100%;
+			transition: left 0.4s ease;
+		}
+
+		&__item {
+			position: relative;
+			padding: 0.5rem 0;
+			height: auto;
+			max-width: none;
+			font-weight: 600;
+
+			span {
+				font-size: px-to-rem(24);
+				line-height: 2rem;
+				display: inline-block;
+			}
+
+			& > a {
+				padding-top: 0;
+				padding-bottom: 0;
+			}
+
+			&--in-touch {
+				padding: 0;
+				width: 10em;
+				margin: 0.8em auto;
+				line-height: 1;
+				font-size: px-to-rem(24);
+				a {
+					padding: 0.5rem 0;
+					text-align: center;
+					justify-content: center;
+				}
+			}
+		}
+
+		&__input {
+			top: 0.8rem;
+			margin: 0;
+		}
+
+		&__input:checked ~ &__submenu {
+			opacity: 1;
+			transform: scale(1, 1) translateY(5px);
+			height: 1.4rem;
+			display: block;
+		}
+
+		&__label {
+			position: absolute;
+			top: px-to-rem(33);
+			margin-left: -15px;
+		}
+
+		&__submenu {
+			opacity: 0;
+			transition: transform 0.2s ease, opacity 0.2s ease, height 0.2s ease !important;
+			width: 100%;
+			padding: 0;
+			margin: 0;
+			transform-origin: top center;
+			transform: scale(1, 0) translateY(-25px);
+			position: static;
+			height: 0px;
+			box-shadow: none;
+		}
+
+		&__submenu-item {
+			padding: 0;
+			background: #cbd6e4;
+			width: 100%;
+			font-size: 0.7rem;
+			border-bottom: 1px solid #ffffffab;
+			max-width: 100%;
+			a {
+				padding: 5px;
+				width: 100%;
+			}
+		}
+	}
+}
+
+@media (max-width: $navbar-mobile-breakpoint) {
+	.navbar--expanded {
+		overflow-y: hidden;
+		.navigation {
+			&__wrapper__item {
+				display: list-item;
+			}
+		}
+	}
+}
+
+.preheader-cta {
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	color: $colors-primary;
+	background: #fff;
+	width: 100%;
+	max-width: 1256px;
+	margin: 0 auto;
+	padding: 1rem;
+	align-items: center;
+	min-height: px-to-rem(54);
+	flex-wrap: wrap;
+
+	&--hidden {
+		display: none;
+	}
+
+	&__link {
+		font-weight: bold;
+		color: $colors-primary;
+		vertical-align: middle;
+		word-break: break-word;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+
+	&__btn {
+		margin-right: 1.5rem;
+		line-height: 1;
+	}
+
+	&__content {
+		max-width: calc(100% - 3rem);
+		margin-right: 1rem;
+		word-break: break-word;
+	}
+}
+
+.cross {
+	position: absolute;
+	right: 1rem;
+	width: 30px;
+	height: 20px;
+	margin-top: 4px;
+	display: inline-flex;
+	vertical-align: middle;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	padding: 0 0.3rem;
+	background: none;
+	border: none;
+	outline: 0;
+
+	&::-moz-focus-inner {
+		border: 0;
+	}
+
+	&:focus,
+	&:active {
+		outline: 1px solid #000;
+	}
+
+	&__stick {
+		width: px-to-rem(14);
+		height: px-to-rem(2);
+		background: $colors-primary;
+		position: absolute;
+
+		&--left {
+			transform: rotate(-45deg);
+		}
+
+		&--right {
+			transform: rotate(45deg);
+		}
+	}
+}
