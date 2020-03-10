@@ -7,18 +7,24 @@ export interface ITechnologyTileProps {
 	name: string;
 	image_path: string;
 	alt: string;
+	wrapping_element?: string;
 }
 
-TechnologyTile = async (add_effect, config, { name, image_path, alt }) => {
+TechnologyTile = async (
+	add_effect,
+	config,
+	{ name, image_path, alt, wrapping_element = "div" }
+) => {
 	const image = await SideEffects.File.fromPath(image_path);
+	const e = wrapping_element;
 	const html = /* HTML */ `
-		<div class="technology-tile technology-tile--${name}">
+		<${e} class="technology-tile technology-tile--${name}" title="${name}">
 			<img
 				src="${await image.getUrlPlaceholder()}"
 				alt="${alt}"
 				height="100"
 			/>
-		</div>
+		</${e}>
 	`;
 	await Promise.all([
 		add_effect(image),
