@@ -19,7 +19,6 @@ TextImageBlock = async (
 ) => {
 	const responsive_image_params = {
 		image_path: image_path,
-		resolutions: [1152, 576],
 		alt: alt,
 		sizes_attr: "100vw",
 	};

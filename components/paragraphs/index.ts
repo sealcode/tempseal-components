@@ -7,3 +7,4 @@ export * as TextImageBlock from "./text-image-block/text-image-block";
 export * as ThumbnailParagraph from "./thumbnail-paragraph/thumbnail-paragraph";
 export * as Workflow from "./workflow/workflow";
 export * as WorkflowStep from "./workflow-step/workflow-step";
+export * as HeaderLeadParagraph from "./header-lead-paragraph/header-lead-paragraph";

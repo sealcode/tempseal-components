@@ -20,6 +20,8 @@
 
 		img {
 			margin: 0 auto;
+			object-fit: contain;
+			max-width: 100%;
 		}
 
 		&--sticky {
@@ -49,7 +51,7 @@
 
 		h3 {
 			padding-top: 1rem;
-			@include font("title", 100);
+			@include font("title", 200);
 			font-size: 0.9rem;
 			color: $colors-body-text-on-white;
 		}
@@ -78,6 +80,14 @@
 		}
 		.paragraph {
 			grid-column: 1;
+		}
+	}
+	&--no-paragraph {
+		.header {
+			grid-row: 1/3;
+			display: flex;
+			flex-flow: column;
+			justify-content: center;
 		}
 	}
 }

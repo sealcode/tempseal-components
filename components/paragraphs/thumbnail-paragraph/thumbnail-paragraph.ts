@@ -8,9 +8,9 @@ export interface IThumbnailParagraphProps {
 	img_side: "left" | "right";
 	headline: string;
 	title: string;
-	description: string;
+	description?: string;
 	alt_text: string;
-	sticky: boolean;
+	sticky?: boolean;
 }
 
 ThumbnailParagraph = async (
@@ -30,7 +30,9 @@ ThumbnailParagraph = async (
 	const html = /* HTML */ `
 		<div
 			class="thumbnail-paragraph thumbnail-paragraph--${img_side ||
-				"right"}"
+				"right"} ${description
+				? ""
+				: "thumbnail-paragraph--no-paragraph"}"
 		>
 			<div class="thumbnail ${sticky ? "thumbnail--sticky" : ""}">
 				<img
@@ -42,9 +44,11 @@ ThumbnailParagraph = async (
 				<div class="headline">${headline || ""}</div>
 				<h3>${title || ""}</h3>
 			</div>
-			<div class="paragraph">
+			${description
+				? `<div class="paragraph">
 				${description || ""}
-			</div>
+		 </div>`
+				: ""}
 		</div>
 	`;
 	await Promise.all([

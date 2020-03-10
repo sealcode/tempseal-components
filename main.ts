@@ -1,8 +1,22 @@
-export * as CallToActions from "./components/call-to-actions";
-export * as Elements from "./components/elements";
-export * as Headers from "./components/headers";
-export * as Items from "./components/items";
-export * as Lists from "./components/lists";
-export * as Navigation from "./components/navigation";
-export * as Ornaments from "./components/ornaments";
-export * as Paragraphs from "./components/paragraphs";
+export * from "./components";
+import * as Components from "./components";
+
+import { ComponentMap } from "@sealcode/tempseal";
+
+export default new ComponentMap([
+	...Object.keys(Components)
+		.map(
+			(
+				key:
+					| "CallToActions"
+					| "Elements"
+					| "Headers"
+					| "Items"
+					| "Lists"
+					| "Navigation"
+					| "Ornaments"
+					| "Paragraphs"
+			) => Object.values(Components[key]).map(e => e.default)
+		)
+		.reduce((acc, value) => acc.concat(value)),
+]);
