@@ -22,7 +22,8 @@
 
 	&--sticky {
 		display: grid;
-		grid-template-columns: 30% 70%;
+		grid-column-gap: 1rem;
+		grid-template-columns: min-content 1fr;
 
 		.header-lead-paragraph__caption {
 			grid-column: 1;
