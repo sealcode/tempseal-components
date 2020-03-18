@@ -11,8 +11,7 @@ export interface IPageHeaderProps {
 }
 
 PageHeader = async (
-	add_effect,
-	config,
+	context,
 	{ header_primary, header_secondary, bg = 1, header_level = 2 }
 ) => {
 	const background = await SideEffects.File.fromPath(
@@ -48,14 +47,13 @@ PageHeader = async (
 		</div>
 	`;
 	await Promise.all([
-		add_effect(background),
-		add_effect(seal_with_a_clock),
+		context.add_effect(background),
+		context.add_effect(seal_with_a_clock),
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "page-header.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

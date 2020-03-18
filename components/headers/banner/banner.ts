@@ -16,8 +16,7 @@ interface IBannerProps {
 }
 
 Banner = async (
-	add_effect,
-	config,
+	context,
 	{
 		text_primary = "",
 		text_secondary = "",
@@ -25,19 +24,17 @@ Banner = async (
 		header_level = 1,
 	}: IBannerProps
 ) => {
-	console.log(image_config);
 	const responsive_image = await SideEffects.ResponsiveImage(
-		add_effect,
+		context,
 		image_config
 	);
 	const h = header_level;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "banner.scss")
 		),
-		add_effect(
+		context.add_effect(
 			new SideEffects.HtmlChunk(/* HTML */ `
 				<section class="banner">
 					<div class="banner__wrapper">

@@ -3,7 +3,7 @@ import { IComponent, SideEffects } from "@sealcode/tempseal";
 
 let ConfigDemo: IComponent;
 
-ConfigDemo = async (add_effect, config) => {
+ConfigDemo = async ({ add_effect, config }) => {
 	const fonts_html = `<ul>
 	${Object.entries(config.fonts)
 		.map(
@@ -40,8 +40,7 @@ ConfigDemo = async (add_effect, config) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			{ add_effect, config },
 			resolve(__dirname, "config-demo.scss")
 		),
 		add_effect(new SideEffects.HtmlChunk(html)),

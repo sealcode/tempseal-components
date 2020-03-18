@@ -15,18 +15,13 @@ export interface INewsletterFormProps {
 	header_level: THeaderLevel;
 }
 
-NewsletterForm = async (add_effect, config, { list_id, header_level = 2 }) => {
-	const sygnet = await add_effect(
+NewsletterForm = async (context, { list_id, header_level = 2 }) => {
+	const sygnet = await context.add_effect(
 		SideEffects.File.fromPath(resolve(__dirname, "sygnet-mietowy.svg"))
 	);
 	const h = header_level;
 	const html = /* HTML */ `
-		${await embedComponent(
-			add_effect,
-			config,
-			{ rotated: false, negative: true },
-			wave
-		)}
+		${await embedComponent(context, { rotated: false, negative: true }, wave)}
 		<section class="newsletter-form">
 			<h${h} class="newsletter-form__header">
 				Zapisz się do naszego newslettera i otrzymuj najciekawsze wieści
@@ -59,11 +54,10 @@ NewsletterForm = async (add_effect, config, { list_id, header_level = 2 }) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "newsletter-form.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

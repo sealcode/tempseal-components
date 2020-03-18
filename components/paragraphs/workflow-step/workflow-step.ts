@@ -23,8 +23,7 @@ export interface IWorkflowStepProps {
 }
 
 WorkflowStep = async (
-	add_effect,
-	config,
+	context,
 	{
 		number,
 		title,
@@ -50,8 +49,7 @@ WorkflowStep = async (
 				: ""}
 			<div class="workflow-step__bg">
 				${await embedComponent(
-					add_effect,
-					config,
+					context,
 					{
 						flip_horizontally: flip_wave,
 						rotated: false,
@@ -86,15 +84,13 @@ WorkflowStep = async (
 
 				<div class="workflow-step__buttons">
 					${await embedComponent(
-						add_effect,
-						config,
+						context,
 						{ ...button_primary, color: "primary" },
 						button
 					)}
 					${button_secondary
 						? await embedComponent(
-								add_effect,
-								config,
+								context,
 								{ ...button_secondary, color: "primary" },
 								button
 						  )
@@ -102,8 +98,7 @@ WorkflowStep = async (
 				</div>
 
 				${await embedComponent(
-					add_effect,
-					config,
+					context,
 					{
 						direction: photo_direction,
 						image_path,
@@ -116,11 +111,10 @@ WorkflowStep = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "workflow-step.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

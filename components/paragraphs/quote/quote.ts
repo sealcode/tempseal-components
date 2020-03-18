@@ -9,7 +9,7 @@ export interface IQuoteProps {
 	author: string;
 }
 
-Quote = async (add_effect, config, { background_color, paragraph, author }) => {
+Quote = async (context, { background_color, paragraph, author }) => {
 	const quote_image = await SideEffects.File.fromPath(
 		resolve(__dirname, "quote.svg")
 	);
@@ -38,13 +38,9 @@ Quote = async (add_effect, config, { background_color, paragraph, author }) => {
 		</section>
 	`;
 	await Promise.all([
-		add_effect(quote_image),
-		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
-			resolve(__dirname, "quote.scss")
-		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(quote_image),
+		SideEffects.Scss.addFromPath(context, resolve(__dirname, "quote.scss")),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

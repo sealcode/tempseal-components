@@ -20,8 +20,7 @@ export interface IOrderedBlocksProps {
 let OrderedBlocks: IComponent<IOrderedBlocksProps>;
 
 OrderedBlocks = async (
-	add_effect,
-	config,
+	context,
 	{
 		list_items,
 		btn_config,
@@ -37,8 +36,7 @@ OrderedBlocks = async (
 				? /* HTML */ `
 						<div class="ordered-blocks__bg">
 							${await embedComponent(
-								add_effect,
-								config,
+								context,
 								{ rotated: true, wave_color: "#f6f6f6" },
 								wave
 							)}
@@ -51,8 +49,7 @@ OrderedBlocks = async (
 						await Promise.all(
 							list_items.map((item, index: number) =>
 								embedComponent(
-									add_effect,
-									config,
+									context,
 									{
 										number: index + starting_index,
 										...item,
@@ -67,12 +64,12 @@ OrderedBlocks = async (
 				<div class="ordered-blocks__buttons">
 					${btn_config
 						? `<div class="ordered-blocks__button-wrapper">
-					  ${await embedComponent(add_effect, config, btn_config, button)}
+                     	${await embedComponent(context, btn_config, button)}
 				</div>`
 						: ""}
 					${btn2_config
 						? `<div class="ordered-blocks__button-wrapper">
-					  ${await embedComponent(add_effect, config, btn2_config, button)}
+					  ${await embedComponent(context, btn2_config, button)}
 					</div>`
 						: ""}
 				</div>
@@ -81,11 +78,10 @@ OrderedBlocks = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "ordered-blocks.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

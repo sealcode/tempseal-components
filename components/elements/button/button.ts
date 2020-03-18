@@ -9,8 +9,8 @@ export interface IButtonProps {
 	link: string;
 }
 
-button = async function(add_effect, config, { text, color, link }) {
-	add_effect(
+button = async function(context, { text, color, link }) {
+	context.add_effect(
 		new SideEffects.HtmlChunk(`
 		<a href="${link}" class="button ${color ? "button--" + color : ""}">
 			${text}
@@ -19,8 +19,7 @@ button = async function(add_effect, config, { text, color, link }) {
 	);
 
 	await SideEffects.Scss.addFromPath(
-		add_effect,
-		config,
+		context,
 		resolve(__dirname, "./button.scss")
 	);
 };

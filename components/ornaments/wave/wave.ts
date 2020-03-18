@@ -11,8 +11,7 @@ interface IWaveProps {
 }
 
 Wave = async (
-	add_effect,
-	config,
+	context,
 	{ rotated, wave_color, flip_horizontally, negative = false }: IWaveProps
 ) => {
 	const html = /* HTML */ `
@@ -31,12 +30,8 @@ Wave = async (
 		</svg>
 	`;
 	await Promise.all([
-		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
-			resolve(__dirname, "wave.scss")
-		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		SideEffects.Scss.addFromPath(context, resolve(__dirname, "wave.scss")),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

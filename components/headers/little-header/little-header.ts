@@ -11,8 +11,7 @@ export interface ILittleHeader {
 }
 
 LittleHeader = async (
-	add_effect,
-	config,
+	context,
 	{
 		header,
 		description,
@@ -41,13 +40,12 @@ LittleHeader = async (
 		</section>
 	`;
 	await Promise.all([
-		add_effect(image),
+		context.add_effect(image),
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "little-header.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

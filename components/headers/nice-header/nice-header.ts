@@ -25,8 +25,7 @@ export interface INiceHeaderProps {
 }
 
 NiceHeader = async (
-	add_effect,
-	config,
+	context,
 	{
 		image_direction,
 		image_path = resolve(__dirname, "./nice-header.jpg"),
@@ -48,8 +47,7 @@ NiceHeader = async (
 			} nice-header--image-on-${img_side}"
 		>
 			${await embedComponent(
-				add_effect,
-				config,
+				context,
 				{
 					direction: image_direction,
 					image_path,
@@ -63,26 +61,16 @@ NiceHeader = async (
 				<p>
 					${description}
 				</p>
-				${
-					btn_config
-						? await embedComponent(
-								add_effect,
-								config,
-								btn_config,
-								button
-						  )
-						: ""
-				}
+				${btn_config ? await embedComponent(context, btn_config, button) : ""}
 			</div>
 		</section>
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "nice-header.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

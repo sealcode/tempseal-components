@@ -1,18 +1,12 @@
 import { resolve } from "path";
-import {
-	IComponent,
-	SideEffects,
-	embedComponent,
-	THeaderLevel,
-} from "@sealcode/tempseal";
+import { IComponent, SideEffects, embedComponent } from "@sealcode/tempseal";
 
 import button from "../../elements/button/button";
 
 let BreakoutCTA: IComponent;
 
 BreakoutCTA = async (
-	add_effect,
-	config,
+	context,
 	{ leftheader, rightheader, buttonlink, header_level = 2 }
 ) => {
 	const button_params = {
@@ -31,18 +25,17 @@ BreakoutCTA = async (
 					<p>${rightheader}</p>
 				</div>
 				<div class="breakout-cta-element__button">
-					${await embedComponent(add_effect, config, button_params, button)}
+${await embedComponent(context, button_params, button)}
 				</div>
 			</div>
 		</section>
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "breakout-cta.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

@@ -14,7 +14,7 @@ const renderItem = ({ href, content }: IItem) => {
 	`;
 };
 
-Linker = async (add_effect, config, items: IItem[]) => {
+Linker = async (context, items: IItem[]) => {
 	const html = /* HTML */ `
 		<section class="linker">
 			<div class="linker__body">
@@ -24,11 +24,10 @@ Linker = async (add_effect, config, items: IItem[]) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "linker.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

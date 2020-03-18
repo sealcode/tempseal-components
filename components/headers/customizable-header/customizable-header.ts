@@ -19,8 +19,7 @@ export interface ICustomizableHeader {
 }
 
 CustomizableHeader = async (
-	add_effect,
-	config,
+	context,
 	{ content, btn_config, header_text, description, header_level = 2 }
 ) => {
 	const h = header_level;
@@ -32,17 +31,16 @@ CustomizableHeader = async (
 				<p class="customizable-header__paragraph">
 					${description}
 				</p>
-				${await embedComponent(add_effect, config, btn_config, button)}
+${await embedComponent(context, btn_config, button)}
 			</div>
 		</div>
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "customizable-header.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

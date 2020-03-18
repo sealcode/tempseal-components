@@ -9,11 +9,11 @@ interface IPhotoInLogoComponentProps extends IPhotoInLogoProps {
 	alt: string;
 }
 
-PhotoInLogo = async (add_effect, config, props) => {
+PhotoInLogo = async (context, props) => {
 	const html = /* HTML */ `
 		<div class="photo-in-logo">
 			<img
-				src="${await loadPhotoInLogo(add_effect, props)}"
+				src="${await loadPhotoInLogo(context.add_effect, props)}"
 				alt=${props.alt}
 				height="300"
 			/>
@@ -21,11 +21,10 @@ PhotoInLogo = async (add_effect, config, props) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "photo-in-logo.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

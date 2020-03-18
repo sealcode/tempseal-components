@@ -11,8 +11,7 @@ export interface ITechnologyTileProps {
 }
 
 TechnologyTile = async (
-	add_effect,
-	config,
+	context,
 	{ name, image_path, alt, wrapping_element = "div" }
 ) => {
 	const image = await SideEffects.File.fromPath(image_path);
@@ -27,13 +26,12 @@ TechnologyTile = async (
 		</${e}>
 	`;
 	await Promise.all([
-		add_effect(image),
+		context.add_effect(image),
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "technology-tile.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

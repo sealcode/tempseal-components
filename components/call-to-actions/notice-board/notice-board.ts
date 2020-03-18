@@ -40,8 +40,7 @@ const renderContact = async (
 };
 
 NoticeBoard = async (
-	add_effect,
-	config,
+	context,
 	{ leftheader, rightheader, image_path, links, id, header_level }
 ) => {
 	const h = header_level;
@@ -50,7 +49,7 @@ NoticeBoard = async (
 			<div class="notice-board">
 				${id ? `<div class="notice-board__anchor-point" id="${id}"></div>` : ""}
 				<div class="notice-board__background">
-					${await SideEffects.ResponsiveImage(add_effect, {
+					${await SideEffects.ResponsiveImage(context, {
 						image_path: image_path,
 						alt: "Some alt text",
 						resolutions: [800, 1000, 1200, 1500, 2000],
@@ -66,7 +65,7 @@ NoticeBoard = async (
 							${(
 								await Promise.all(
 									links.map((link: IContact) =>
-										renderContact(add_effect, link)
+										renderContact(context.add_effect, link)
 									)
 								)
 							).join("")}
@@ -78,11 +77,10 @@ NoticeBoard = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "notice-board.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

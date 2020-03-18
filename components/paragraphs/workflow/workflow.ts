@@ -10,16 +10,12 @@ export interface IWorkflowProps {
 	texts: string[];
 }
 
-Workflow = async (
-	add_effect,
-	config,
-	{ image_path, image_alt, title, texts }
-) => {
+Workflow = async (context, { image_path, image_alt, title, texts }) => {
 	const html = /* HTML */ `
 		<div class="workflow">
 			<div class="workflow__inner-wraper">
 				<div class="workflow__image">
-					${await SideEffects.ResponsiveImage(add_effect, {
+					${await SideEffects.ResponsiveImage(context, {
 						image_path: image_path,
 						resolutions: [1000, 750, 500, 400],
 						sizes_attr: "(max-width: 1000px) 100vw, 1000px",
@@ -41,11 +37,10 @@ Workflow = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "workflow.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

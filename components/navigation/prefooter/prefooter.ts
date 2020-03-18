@@ -8,11 +8,7 @@ export interface IPrefooterProps {
 	large_text: string;
 }
 
-Prefooter = async (
-	add_effect,
-	config,
-	{ small_text_list = [], large_text = "" }
-) => {
+Prefooter = async (context, { small_text_list = [], large_text = "" }) => {
 	const html = /* HTML */ `
 		<section class="prefooter">
 			<div class="prefooter__container">
@@ -32,11 +28,10 @@ Prefooter = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "prefooter.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

@@ -16,14 +16,13 @@ export interface IProductTileProps {
 }
 
 ProductTile = async (
-	add_effect,
-	config,
+	context,
 	{ modifier, image_path, image_alt, title, content, button_params, href }
 ) => {
 	const html = /* HTML */ `
 		<article class="product-tile product-tile--${modifier}">
 			<${href ? `a href="${href}"` : "div"} class="product-tile__image">
-		${await SideEffects.ResponsiveImage(add_effect, {
+		${await SideEffects.ResponsiveImage(context, {
 			image_path: image_path,
 			resolutions: [242, 448],
 			sizes_attr: "242px",
@@ -34,20 +33,15 @@ ProductTile = async (
 				${href ? `<a class="product-tile__header" href="${href}">${title}</a>` : title}
 			</h3>
 			<p>${content}</p>
-	${
-		button_params
-			? await embedComponent(add_effect, config, button_params, button)
-			: ""
-	}
+	${button_params ? await embedComponent(context, button_params, button) : ""}
 		</article>
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "product-tile.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

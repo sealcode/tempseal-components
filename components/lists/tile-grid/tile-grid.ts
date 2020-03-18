@@ -18,13 +18,12 @@ export interface ITileGridProps {
 	header_level: THeaderLevel;
 }
 
-TileGrid = async (add_effect, config, { title, tiles, header_level }) => {
+TileGrid = async (context, { title, tiles, header_level }) => {
 	const tiles_html = (
 		await Promise.all(
 			tiles.map(tile =>
 				embedComponent(
-					add_effect,
-					config,
+					context,
 					{ wrapping_element: "li", ...tile },
 					TechnologyTile
 				)
@@ -42,11 +41,10 @@ TileGrid = async (add_effect, config, { title, tiles, header_level }) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "tile-grid.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

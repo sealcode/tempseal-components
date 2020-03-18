@@ -17,7 +17,7 @@ export interface INavbarProps {
 	variant: "primary" | "secondary" | "white";
 }
 
-Navbar = async (add_effect, config, { prenavbar_config, items, variant }) => {
+Navbar = async (context, { prenavbar_config, items, variant }) => {
 	const html = /* HTML */ `
 		${prenavbar_config ? await prenavbar_cta(prenavbar_config) : ""}
 
@@ -65,11 +65,10 @@ Navbar = async (add_effect, config, { prenavbar_config, items, variant }) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "navbar.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

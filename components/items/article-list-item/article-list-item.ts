@@ -14,8 +14,7 @@ export interface IArticleItemProps {
 }
 
 ArticleListItem = async function(
-	add_effect,
-	config,
+	context,
 	{
 		number,
 		name,
@@ -28,16 +27,14 @@ ArticleListItem = async function(
 ) {
 	let image;
 	if (icon_path) {
-		image = await add_effect(SideEffects.File.fromPath(icon_path));
+		image = await context.add_effect(SideEffects.File.fromPath(icon_path));
 	}
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "./article-list-item.scss")
 		),
-
-		add_effect(
+		context.add_effect(
 			new SideEffects.HtmlChunk(/* HTML */ `
 				<li
 					class="article-list-item article-list-item--${modifier} article-list-item--${header_mode}"

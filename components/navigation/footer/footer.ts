@@ -4,7 +4,7 @@ import { IComponent, SideEffects } from "@sealcode/tempseal";
 
 let Footer: IComponent;
 
-Footer = async (add_effect, config, { contact_text }) => {
+Footer = async (context, { contact_text }) => {
 	if (contact_text === undefined) {
 		throw new Error("component footer - contact_text not provided");
 	}
@@ -34,11 +34,10 @@ Footer = async (add_effect, config, { contact_text }) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "footer.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

@@ -5,6 +5,7 @@ import {
 	SideEffects,
 	SideEffect,
 	THeaderLevel,
+	Context,
 } from "@sealcode/tempseal";
 
 let Team: IComponent<ITeamProps>;
@@ -31,20 +32,23 @@ export interface IMember {
 	gender: string;
 }
 
-const TeamMember = (
-	add_effect: (effect: SideEffect) => Promise<SideEffect>
-) => async (member: IMember): Promise<string> => {
+const TeamMember = (context: Context) => async (
+	member: IMember
+): Promise<string> => {
 	const facebook_icon = await SideEffects.File.fromPath(
 		resolve(__dirname, "facebook__team-member__black.svg")
 	);
 	const linkedin_icon = await SideEffects.File.fromPath(
 		resolve(__dirname, "linkedin__team-member__black.svg")
 	);
-	await Promise.all([add_effect(facebook_icon), add_effect(linkedin_icon)]);
+	await Promise.all([
+		context.add_effect(facebook_icon),
+		context.add_effect(linkedin_icon),
+	]);
 	return /* HTML */ `
 		<div class="team-member">
 			<div class="team-member__image">
-				${await SideEffects.ResponsiveImage(add_effect, {
+				${await SideEffects.ResponsiveImage(context, {
 					image_path: member.image_path,
 					resolutions: [1000, 750, 500, 400],
 					sizes_attr: "(max-width: 548px) calc(100vw - 2rem), 500px",
@@ -112,25 +116,21 @@ const TeamMember = (
 	`;
 };
 
-Team = async (add_effect, config, { title, members, header_level = 2 }) => {
+Team = async (context, { title, members, header_level = 2 }) => {
 	const h = header_level;
 	const html = /* HTML */ `
 		<div class="team" id="the-team">
 			<div class="wrapper">
          		<div class="the-team"><h${h}>${title || ""}</h${h}></div>
 				<div class="members">
-					${(await Promise.all(members.map(TeamMember(add_effect)))).join("")}
+					${(await Promise.all(members.map(TeamMember(context)))).join("")}
 				</div>
 			</div>
 		</div>
 	`;
 	await Promise.all([
-		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
-			resolve(__dirname, "team.scss")
-		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		SideEffects.Scss.addFromPath(context, resolve(__dirname, "team.scss")),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

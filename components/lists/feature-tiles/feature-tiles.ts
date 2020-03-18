@@ -11,10 +11,10 @@ interface ITile {
 	imagePath: string;
 }
 
-FeatureTiles = async (add_effect, config, { tiles }: { tiles: ITile[] }) => {
+FeatureTiles = async (context, { tiles }: { tiles: ITile[] }) => {
 	const tiles_html = await Bluebird.map(tiles, async tile => {
 		const image = await SideEffects.File.fromPath(tile.imagePath);
-		await add_effect(image);
+		await context.add_effect(image);
 		return /* HTML */ `
 			<dl class="feature-tiles__tile">
 				<img
@@ -32,11 +32,10 @@ FeatureTiles = async (add_effect, config, { tiles }: { tiles: ITile[] }) => {
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "feature-tiles.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

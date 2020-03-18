@@ -20,8 +20,7 @@ export interface IContactSectionProps {
 }
 
 ContactSection = async (
-	add_effect,
-	config,
+	context,
 	{ headline, contact_params, description, email_address, header_level }
 ) => {
 	const h = header_level;
@@ -34,12 +33,7 @@ ContactSection = async (
 						  headline +
 						  `</h${h}>`
 						: ""}
-					${await embedComponent(
-						add_effect,
-						config,
-						contact_params,
-						contact
-					)}
+					${await embedComponent(context, contact_params, contact)}
 				</div>
 				<div class="contact-section__right-side">
 					${description ? "<p>" + description + "</p>" : ""}
@@ -57,11 +51,10 @@ ContactSection = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "contact-section.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

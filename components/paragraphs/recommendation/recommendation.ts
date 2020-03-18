@@ -12,8 +12,7 @@ export interface IRecommendationProps {
 }
 
 Recommendation = async (
-	add_effect,
-	config,
+	context,
 	{ quotation, img_path, author, author_description, layout = "vertical" }
 ) => {
 	const quotation_mark = await SideEffects.File.fromPath(
@@ -42,14 +41,13 @@ Recommendation = async (
 		</blockquote>
 	`;
 	await Promise.all([
-		add_effect(image),
-		add_effect(quotation_mark),
+		context.add_effect(image),
+		context.add_effect(quotation_mark),
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "recommendation.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

@@ -4,8 +4,7 @@ import { IComponent, SideEffects } from "@sealcode/tempseal";
 let HeaderLeadParagraph: IComponent;
 
 HeaderLeadParagraph = async (
-	add_effect,
-	config,
+	context,
 	{ title, pitch, description, description_box, position, top }
 ) => {
 	const html = /* HTML */ `
@@ -29,11 +28,10 @@ HeaderLeadParagraph = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "header-lead-paragraph.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

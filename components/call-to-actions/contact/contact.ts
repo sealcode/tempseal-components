@@ -15,8 +15,7 @@ interface IContactProps {
 let Contact: IComponent;
 
 Contact = async (
-	add_effect,
-	config,
+	context,
 	{ name, address, post_code, city, phone_number, email }: IContactProps
 ) => {
 	const html = /* HTML */ `
@@ -38,11 +37,10 @@ Contact = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "contact.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 Contact.identifier = "contact";

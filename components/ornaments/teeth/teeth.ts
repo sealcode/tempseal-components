@@ -8,7 +8,7 @@ export interface ITeethProps {
 	color_right: string;
 }
 
-Teeth = async (add_effect, config, { color_left, color_right }) => {
+Teeth = async (context, { color_left, color_right }) => {
 	const html = /* HTML */ `
 		<div
 			class="teeth-container"
@@ -19,12 +19,8 @@ Teeth = async (add_effect, config, { color_left, color_right }) => {
 		</div>
 	`;
 	await Promise.all([
-		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
-			resolve(__dirname, "teeth.scss")
-		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		SideEffects.Scss.addFromPath(context, resolve(__dirname, "teeth.scss")),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

@@ -14,8 +14,7 @@ export interface ITextImageBlockProps {
 }
 
 TextImageBlock = async (
-	add_effect,
-	config,
+	context,
 	{ title, small_title, description, image_path, img_side, alt, header_level }
 ) => {
 	const responsive_image_params = {
@@ -35,7 +34,7 @@ TextImageBlock = async (
 					</p>
 				</article>
 				<div class="tib__body-right">
-					${await SideEffects.ResponsiveImage(add_effect, responsive_image_params)}
+					${await SideEffects.ResponsiveImage(context, responsive_image_params)}
 				</div>
 			</div>
 			<hr />
@@ -43,11 +42,10 @@ TextImageBlock = async (
 	`;
 	await Promise.all([
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "text-image-block.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

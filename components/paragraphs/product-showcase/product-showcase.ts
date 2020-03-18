@@ -24,8 +24,7 @@ export interface IProductShowcaseProps {
 }
 
 ProductShowcase = async (
-	add_effect,
-	config,
+	context,
 	{
 		image_path,
 		image_alt,
@@ -72,8 +71,7 @@ ProductShowcase = async (
 						</ul>
 						<div class="product-showcase__details-buttons">
 							${await embedComponent(
-								add_effect,
-								config,
+								context,
 								{
 									text: "Zobacz więcej",
 									link: more_button_url,
@@ -82,8 +80,7 @@ ProductShowcase = async (
 								button
 							)}
 							${await embedComponent(
-								add_effect,
-								config,
+								context,
 								{
 									text: "Odwiedź stronę",
 									link: visit_button_url,
@@ -98,13 +95,12 @@ ProductShowcase = async (
 		</section>
 	`;
 	await Promise.all([
-		add_effect(image),
+		context.add_effect(image),
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "product-showcase.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 

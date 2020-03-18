@@ -14,8 +14,7 @@ export interface IThumbnailParagraphProps {
 }
 
 ThumbnailParagraph = async (
-	add_effect,
-	config,
+	context,
 	{
 		image_path,
 		img_side,
@@ -52,13 +51,12 @@ ThumbnailParagraph = async (
 		</div>
 	`;
 	await Promise.all([
-		add_effect(image),
+		context.add_effect(image),
 		SideEffects.Scss.addFromPath(
-			add_effect,
-			config,
+			context,
 			resolve(__dirname, "thumbnail-paragraph.scss")
 		),
-		add_effect(new SideEffects.HtmlChunk(html)),
+		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
 };
 
