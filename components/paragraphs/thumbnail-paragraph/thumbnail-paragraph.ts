@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import { IComponent, SideEffects } from "@sealcode/tempseal";
+import { IComponent, SideEffects, Fragments } from "@sealcode/tempseal";
 
 let ThumbnailParagraph: IComponent<IThumbnailParagraphProps>;
 
@@ -25,7 +25,6 @@ ThumbnailParagraph = async (
 		sticky = false,
 	}
 ) => {
-	const image = await SideEffects.File.fromPath(image_path);
 	const html = /* HTML */ `
 		<div
 			class="thumbnail-paragraph thumbnail-paragraph--${img_side ||
@@ -34,10 +33,10 @@ ThumbnailParagraph = async (
 				: "thumbnail-paragraph--no-paragraph"}"
 		>
 			<div class="thumbnail ${sticky ? "thumbnail--sticky" : ""}">
-				<img
-					alt="${alt_text || ""}"
-					src="${await image.getUrlPlaceholder()}"
-				/>
+				${await Fragments.Image(context, {
+					alt: alt_text,
+					path: image_path,
+				})}
 			</div>
 			<div class="header">
 				<div class="headline">${headline || ""}</div>
@@ -51,7 +50,6 @@ ThumbnailParagraph = async (
 		</div>
 	`;
 	await Promise.all([
-		context.add_effect(image),
 		SideEffects.Scss.addFromPath(
 			context,
 			resolve(__dirname, "thumbnail-paragraph.scss")

@@ -24,6 +24,16 @@
 			max-width: 100%;
 		}
 
+		.img--horizontal {
+			width: 100%;
+			height: auto;
+		}
+
+		.img--horizontal {
+			width: auto;
+			height: 100%;
+		}
+
 		&--sticky {
 			padding-top: 5rem;
 			& > img {
