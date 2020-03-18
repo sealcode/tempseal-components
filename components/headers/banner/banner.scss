@@ -6,6 +6,11 @@
 		padding: 1rem 0;
 	}
 
+	img {
+		width: 100%;
+		height: auto;
+	}
+
 	&__wrapper {
 		max-width: 48.85714rem;
 		margin: auto;
@@ -28,7 +33,6 @@
 	}
 
 	&__title {
-		@include font("title", 400);
 		margin: auto;
 		max-width: 21rem;
 		width: 100%;

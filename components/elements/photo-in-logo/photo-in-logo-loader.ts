@@ -7,7 +7,7 @@ const asyncStat = promisify(stat);
 
 export interface IPhotoInLogoProps {
 	image_path: string;
-	img_color_mode: "normal" | "grayscale";
+	image_color_mode?: "normal" | "grayscale";
 	direction: "left" | "right";
 }
 
@@ -23,7 +23,7 @@ export const loadPhotoInLogo = async (
 			props.image_path,
 			file_info.mtime,
 			props.direction,
-			props.img_color_mode,
+			props.image_color_mode,
 		]
 	);
 	await add_effect(file);
@@ -39,7 +39,7 @@ const extension_to_data_path: { [ext: string]: string } = {
 async function render({
 	direction,
 	image_path,
-	img_color_mode,
+	image_color_mode,
 }: IPhotoInLogoProps) {
 	const image_extension = extname(image_path);
 	const image_data_path = extension_to_data_path[image_extension];
@@ -76,7 +76,7 @@ async function render({
 				style="image-rendering:optimizeQuality"
 				xlink:href="${image_data_path};base64,${await getEncodedImageData(
 					image_path,
-					img_color_mode
+					image_color_mode || "normal"
 				)}"
 				id="image21"
 				x="-0.059999999"

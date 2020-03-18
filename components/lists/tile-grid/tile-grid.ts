@@ -1,5 +1,10 @@
 import { resolve } from "path";
-import { IComponent, SideEffects, embedComponent } from "@sealcode/tempseal";
+import {
+	IComponent,
+	SideEffects,
+	embedComponent,
+	THeaderLevel,
+} from "@sealcode/tempseal";
 
 import TechnologyTile, {
 	ITechnologyTileProps,
@@ -10,9 +15,10 @@ let TileGrid: IComponent<ITileGridProps>;
 export interface ITileGridProps {
 	title: string;
 	tiles: ITechnologyTileProps[];
+	header_level: THeaderLevel;
 }
 
-TileGrid = async (add_effect, config, { title, tiles }) => {
+TileGrid = async (add_effect, config, { title, tiles, header_level }) => {
 	const tiles_html = (
 		await Promise.all(
 			tiles.map(tile =>
@@ -25,9 +31,10 @@ TileGrid = async (add_effect, config, { title, tiles }) => {
 			)
 		)
 	).join("\n");
+	const h = header_level;
 	const html = /* HTML */ `
 		<div class="tile-grid">
-			<h2>${title}</h2>
+			<h${h}>${title}</h${h}>
 			<ul>
 				${tiles_html}
 			</ul>

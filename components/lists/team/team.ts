@@ -1,12 +1,18 @@
 import obfuscate from "@sealcode/obfuscate-html-attr";
 import { resolve } from "path";
-import { IComponent, SideEffects, SideEffect } from "@sealcode/tempseal";
+import {
+	IComponent,
+	SideEffects,
+	SideEffect,
+	THeaderLevel,
+} from "@sealcode/tempseal";
 
 let Team: IComponent<ITeamProps>;
 
 export interface ITeamProps {
 	title: string;
 	members: IMember[];
+	header_level: THeaderLevel;
 }
 
 export interface IMember {
@@ -106,15 +112,14 @@ const TeamMember = (
 	`;
 };
 
-Team = async (add_effect, config, { title, members }) => {
+Team = async (add_effect, config, { title, members, header_level = 2 }) => {
+	const h = header_level;
 	const html = /* HTML */ `
 		<div class="team" id="the-team">
 			<div class="wrapper">
-				<div class="the-team"><h2>${title || ""}</h2></div>
+         		<div class="the-team"><h${h}>${title || ""}</h${h}></div>
 				<div class="members">
-					${(
-						await Promise.all(members.map(TeamMember(add_effect)))
-					).join("")}
+					${(await Promise.all(members.map(TeamMember(add_effect)))).join("")}
 				</div>
 			</div>
 		</div>

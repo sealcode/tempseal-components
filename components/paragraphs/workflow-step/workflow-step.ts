@@ -18,6 +18,7 @@ export interface IWorkflowStepProps {
 	lower_color: string;
 	photo_direction: "left" | "right";
 	flip_wave: boolean;
+	alt: string;
 	id: string;
 }
 
@@ -36,6 +37,7 @@ WorkflowStep = async (
 		photo_direction = "right",
 		flip_wave,
 		id,
+		alt,
 	}
 ) => {
 	const html = /* HTML */ `
@@ -105,6 +107,7 @@ WorkflowStep = async (
 					{
 						direction: photo_direction,
 						image_path,
+						alt,
 					},
 					photoInLogo
 				)}

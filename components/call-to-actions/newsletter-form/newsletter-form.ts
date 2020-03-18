@@ -1,5 +1,10 @@
 import { resolve } from "path";
-import { IComponent, SideEffects, embedComponent } from "@sealcode/tempseal";
+import {
+	IComponent,
+	SideEffects,
+	embedComponent,
+	THeaderLevel,
+} from "@sealcode/tempseal";
 
 import wave from "../../ornaments/wave/wave";
 
@@ -7,12 +12,14 @@ let NewsletterForm: IComponent<INewsletterFormProps>;
 
 export interface INewsletterFormProps {
 	list_id: string;
+	header_level: THeaderLevel;
 }
 
-NewsletterForm = async (add_effect, config, list_id) => {
+NewsletterForm = async (add_effect, config, { list_id, header_level = 2 }) => {
 	const sygnet = await add_effect(
 		SideEffects.File.fromPath(resolve(__dirname, "sygnet-mietowy.svg"))
 	);
+	const h = header_level;
 	const html = /* HTML */ `
 		${await embedComponent(
 			add_effect,
@@ -21,14 +28,14 @@ NewsletterForm = async (add_effect, config, list_id) => {
 			wave
 		)}
 		<section class="newsletter-form">
-			<h2 class="newsletter-form__header">
+			<h${h} class="newsletter-form__header">
 				Zapisz się do naszego newslettera i otrzymuj najciekawsze wieści
 				z Sealcode!
 				<img
 					src="${await sygnet.getUrlPlaceholder()}"
 					alt="logo-sealcode"
 				/>
-			</h2>
+			</h${h}>
 			<div class="newsletter-form__newsletter-info">
 				Nie obawiaj się spamu, wysyłamy tylko takie wieści, jakie sami
 				chcelibyśmy otrzymywać. Raz w miesiącu dowiedz się o nowych

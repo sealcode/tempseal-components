@@ -1,24 +1,38 @@
 import { resolve } from "path";
-import { embedComponent, IComponent, SideEffects } from "@sealcode/tempseal";
+import {
+	embedComponent,
+	IComponent,
+	SideEffects,
+	THeaderLevel,
+} from "@sealcode/tempseal";
 import { default as obfuscate } from "@sealcode/obfuscate-html-attr";
 
 import contact from "../contact/contact";
 
 let ContactSection: IComponent;
 
+export interface IContactSectionProps {
+	headline: string;
+	contact_params: string;
+	description: string;
+	email_address: string;
+	header_level: THeaderLevel;
+}
+
 ContactSection = async (
 	add_effect,
 	config,
-	{ headline, contact_params, description, email_address }
+	{ headline, contact_params, description, email_address, header_level }
 ) => {
+	const h = header_level;
 	const html = /* HTML */ `
 		<section class="contact-section">
 			<div class="contact-section__body">
 				<div class="contact-section__left-side">
 					${headline
-						? "<h2 class='contact-section__headline'>" +
+						? `<h${h} class='contact-section__headline'>` +
 						  headline +
-						  "</h2>"
+						  `</h${h}>`
 						: ""}
 					${await embedComponent(
 						add_effect,

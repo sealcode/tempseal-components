@@ -68,7 +68,7 @@ class TempsealAdapter extends Adapter {
 					write(output_path)
 				)
 				.subscribe(
-					e => console.log(e.message),
+					e => console.log(e.file_name),
 					er =>
 						reject(
 							`Error: <code><pre>${

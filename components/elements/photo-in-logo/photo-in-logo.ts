@@ -1,16 +1,15 @@
 import { resolve } from "path";
 import { IComponent, SideEffects } from "@sealcode/tempseal";
 
-import { loadPhotoInLogo } from "./photo-in-logo-loader";
+import { loadPhotoInLogo, IPhotoInLogoProps } from "./photo-in-logo-loader";
 
-let PhotoInLogo: IComponent;
+let PhotoInLogo: IComponent<IPhotoInLogoComponentProps>;
+
+interface IPhotoInLogoComponentProps extends IPhotoInLogoProps {
+	alt: string;
+}
 
 PhotoInLogo = async (add_effect, config, props) => {
-	if (!props.dirname) {
-		props.dirname = __dirname;
-	}
-	props.alt;
-
 	const html = /* HTML */ `
 		<div class="photo-in-logo">
 			<img

@@ -1,5 +1,10 @@
 import { resolve } from "path";
-import { IComponent, SideEffects, SideEffect } from "@sealcode/tempseal";
+import {
+	IComponent,
+	SideEffects,
+	SideEffect,
+	THeaderLevel,
+} from "@sealcode/tempseal";
 
 let NoticeBoard: IComponent;
 
@@ -8,6 +13,7 @@ interface IContact {
 	href: string;
 	icon_path: string;
 	name: string;
+	header_level?: THeaderLevel;
 }
 
 const renderContact = async (
@@ -36,15 +42,13 @@ const renderContact = async (
 NoticeBoard = async (
 	add_effect,
 	config,
-	{ leftheader, rightheader, image_path, links, id }
+	{ leftheader, rightheader, image_path, links, id, header_level }
 ) => {
-	console.log(links);
+	const h = header_level;
 	const html = /* HTML */ `
 		<section class="nb-root">
 			<div class="notice-board">
-				${id
-					? `<div class="notice-board__anchor-point" id="${id}"></div>`
-					: ""}
+				${id ? `<div class="notice-board__anchor-point" id="${id}"></div>` : ""}
 				<div class="notice-board__background">
 					${await SideEffects.ResponsiveImage(add_effect, {
 						image_path: image_path,
@@ -55,7 +59,7 @@ NoticeBoard = async (
 				</div>
 				<div class="notice-board__body">
 					<div class="notice-board__body-inner">
-						<h2 class="notice-board__header-main">${leftheader}</h2>
+						<h${h} class="notice-board__header-main">${leftheader}</h${h}>
 
 						<p class="notice-board__header-minor">${rightheader}</p>
 						<address class="notice-board__contacts">

@@ -1,5 +1,10 @@
 import { resolve } from "path";
-import { IComponent, SideEffects, embedComponent } from "@sealcode/tempseal";
+import {
+	IComponent,
+	SideEffects,
+	embedComponent,
+	THeaderLevel,
+} from "@sealcode/tempseal";
 
 import button from "../../elements/button/button";
 
@@ -15,6 +20,7 @@ export interface IProductShowcaseProps {
 	features: Array<{ header: string; content: string }>;
 	extra_header_text: string;
 	variant: "primary" | "secondary" | "white";
+	header_level: THeaderLevel;
 }
 
 ProductShowcase = async (
@@ -30,15 +36,17 @@ ProductShowcase = async (
 		features,
 		extra_header_text,
 		variant = "primary",
+		header_level,
 	}
 ) => {
 	const image = await SideEffects.File.fromPath(image_path);
+	const h = header_level;
 	const html = /* HTML */ `
 		<section class="ps-root">
 			<div
-				class="product-showcase ${variant
-					? `product-showcase--${variant}`
-					: ""} product-showcase__container"
+				class="product-showcase ${
+					variant ? `product-showcase--${variant}` : ""
+				} product-showcase__container"
 			>
 				${extra_header_text ? `<h3>${extra_header_text}</h3>` : ``}
 				<figure class="product-showcase__body">
@@ -46,7 +54,7 @@ ProductShowcase = async (
 						src="${await image.getUrlPlaceholder()}"
 						alt="${image_alt}"
 					/>
-					<h2>${title}</h2>
+					<h${h}>${title}</h${h}>
 					<figcaption class="product-showcase__details">
 						<p>${description}</p>
 						<ul>
