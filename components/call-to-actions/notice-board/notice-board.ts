@@ -20,7 +20,8 @@ const renderContact = async (
 	add_effect: (effect: SideEffect) => Promise<SideEffect>,
 	{ href, name, icon_path, title }: IContact
 ): Promise<string> => {
-	const icon = await add_effect(await SideEffects.File.fromPath(icon_path));
+	const icon = SideEffects.File.fromPath(icon_path);
+	await add_effect(icon);
 	return /* HTML */ `
 		<div class="notice-board__contact">
 			<a

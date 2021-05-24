@@ -21,10 +21,14 @@ export interface ITileGridProps {
 TileGrid = async (context, { title, tiles, header_level }) => {
 	const tiles_html = (
 		await Promise.all(
-			tiles.map(tile =>
+			tiles.map((tile) =>
 				embedComponent(
 					context,
-					{ wrapping_element: "li", ...tile },
+					{
+						wrapping_element: "li",
+						...tile,
+						image_url_prefix: "grid",
+					},
 					TechnologyTile
 				)
 			)

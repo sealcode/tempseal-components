@@ -1,5 +1,5 @@
 import { resolve } from "path";
-import { IComponent, SideEffects } from "@sealcode/tempseal";
+import { IComponent, SideEffects, Fragments } from "@sealcode/tempseal";
 
 let TechnologyTile: IComponent<ITechnologyTileProps>;
 
@@ -8,25 +8,35 @@ export interface ITechnologyTileProps {
 	image_path: string;
 	alt: string;
 	wrapping_element?: string;
+	target_width?: number;
+	custom_style?: string;
+	image_url_prefix?: string;
 }
 
 TechnologyTile = async (
 	context,
-	{ name, image_path, alt, wrapping_element = "div" }
+	{
+		name,
+		image_path,
+		alt,
+		wrapping_element = "div",
+		target_width = 200,
+		custom_style = "",
+		image_url_prefix = "",
+	}
 ) => {
-	const image = await SideEffects.File.fromPath(image_path);
 	const e = wrapping_element;
 	const html = /* HTML */ `
-		<${e} class="technology-tile technology-tile--${name}" title="${name}">
-			<img
-				src="${await image.getUrlPlaceholder()}"
-				alt="${alt}"
-				height="100"
-			/>
+		<${e} class="technology-tile technology-tile--${name}" title="${name}" style="${custom_style}">
+		    ${await Fragments.Image(context, {
+				path: image_path,
+				alt,
+				target_width,
+				url_prefix: image_url_prefix,
+			})}
 		</${e}>
 	`;
 	await Promise.all([
-		context.add_effect(image),
 		SideEffects.Scss.addFromPath(
 			context,
 			resolve(__dirname, "technology-tile.scss")

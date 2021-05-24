@@ -13,12 +13,12 @@ export type IOrderedPictogramTilesProps = Array<{
 }>;
 
 OrderedPictogramTiles = async (context, tiles) => {
+	const images: Promise<any>[] = [];
 	const tile_htmls = (
 		await Promise.all(
-			tiles.map(async tile => {
-				const image = await context.add_effect(
-					SideEffects.File.fromPath(tile.icon_path)
-				);
+			tiles.map(async (tile) => {
+				const image = SideEffects.File.fromPath(tile.icon_path);
+				images.push(context.add_effect(image));
 				return /* HTML */ `
 					<li
 						class="pictogram-tiles__tile pictogram-tiles__tile--${tile.color}"
@@ -49,6 +49,7 @@ OrderedPictogramTiles = async (context, tiles) => {
 		</section>
 	`;
 	await Promise.all([
+		...images,
 		SideEffects.Scss.addFromPath(
 			context,
 			resolve(__dirname, "ordered-pictogram-tiles.scss")

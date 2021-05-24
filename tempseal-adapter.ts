@@ -45,7 +45,7 @@ class TempsealAdapter extends Adapter {
 			let resolve_write: Function;
 			let reject: Function;
 			const promises = [
-				new Promise(resolve => {
+				new Promise((resolve) => {
 					resolve_html_body = resolve;
 				}),
 				new Promise((resolve, _reject) => {
@@ -54,22 +54,25 @@ class TempsealAdapter extends Adapter {
 				}),
 			];
 
-			emitEffects(new ComponentMap([component]), config, [
-				{
-					component_name: component.identifier,
-					props: context,
-				},
-			])
+			emitEffects(new ComponentMap([component]), config, {
+				language: "en",
+				segments: [
+					{
+						component_name: component.identifier,
+						props: context,
+					},
+				],
+			})
 				.pipe(
 					replaceUrlPlaceholders("/"),
 					downloadFonts(output_path),
 
-					combineHtml(content => resolve_html_body(content)),
+					combineHtml((content) => resolve_html_body(content)),
 					write(output_path)
 				)
 				.subscribe(
-					e => console.log(e.file_name),
-					er =>
+					(e) => console.log(e.file_name),
+					(er) =>
 						reject(
 							`Error: <code><pre>${
 								er.formatted ? er.formatted : er

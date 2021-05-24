@@ -6,3 +6,4 @@ export * as Lists from "./components/lists";
 export * as Navigation from "./components/navigation";
 export * as Ornaments from "./components/ornaments";
 export * as Paragraphs from "./components/paragraphs";
+export * as Galleries from "./components/galleries";

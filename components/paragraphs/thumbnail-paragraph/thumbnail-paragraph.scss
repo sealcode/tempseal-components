@@ -29,7 +29,7 @@
 			height: auto;
 		}
 
-		.img--horizontal {
+		.img--vertical {
 			width: auto;
 			height: 100%;
 		}
@@ -46,13 +46,35 @@
 		}
 	}
 
+	&--small {
+		grid-template-columns: max-content;
+		picture {
+			height: 10rem !important;
+		}
+		img {
+			height: 100%;
+		}
+		picture,
+		img {
+			width: 100%;
+			padding: 0 !important;
+			object-fit: cover !important;
+		}
+
+		@media (max-width: 470px) {
+			flex-flow: column !important;
+			picture {
+				height: 7rem !important;
+			}
+		}
+	}
+
 	.header {
 		grid-column: 2;
 		grid-row: 1;
 		margin: 0 1rem;
 		border-top: solid 0.1rem $colors-gray-09;
 		.headline {
-			padding-top: 0.9rem;
 			color: $colors-title-text-on-white;
 			@include font("title", 700);
 			font-size: 1rem;

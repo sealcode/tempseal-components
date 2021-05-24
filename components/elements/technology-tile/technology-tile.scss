@@ -5,6 +5,7 @@
 	justify-content: center;
 	box-shadow: 0 0 0 1px $colors-gray-06;
 	background-color: white;
+	padding: 1rem;
 
 	&:hover {
 		img {
@@ -12,8 +13,13 @@
 		}
 	}
 
+	picture,
 	img {
-		max-width: 50%;
+		width: 100%;
+		height: 100%;
+	}
+
+	img {
 		filter: grayscale(50%);
 		transition: filter 200ms;
 		object-fit: contain;

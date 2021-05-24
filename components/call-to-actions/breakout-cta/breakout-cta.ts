@@ -7,16 +7,14 @@ let BreakoutCTA: IComponent;
 
 BreakoutCTA = async (
 	context,
-	{ leftheader, rightheader, buttonlink, header_level = 2 }
+	{ leftheader, rightheader, header_level = 2, button_params }
 ) => {
-	const button_params = {
-		text: "Dowiedz się więcej",
-		link: buttonlink,
-		color: "purple",
-	};
 	const h = header_level;
+
 	const html = /* HTML */ `
-		<section class="breakout-cta-element">
+		<section class="breakout-cta-element ${
+			button_params ? "breakout-cta-element--with-button" : ""
+		}">
 			<div class="breakout-cta-element__container">
 				<div class="breakout-cta-element__container-left">
 					<h${h}>${leftheader}</h${h}>
@@ -24,9 +22,17 @@ BreakoutCTA = async (
 				<div class="breakout-cta-element__container-right">
 					<p>${rightheader}</p>
 				</div>
-				<div class="breakout-cta-element__button">
-${await embedComponent(context, button_params, button)}
-				</div>
+				${
+					button_params
+						? /* HTML */ `<div class="breakout-cta-element__button">
+								${await embedComponent(
+									context,
+									button_params,
+									button
+								)}
+						  </div>`
+						: ""
+				}
 			</div>
 		</section>
 	`;

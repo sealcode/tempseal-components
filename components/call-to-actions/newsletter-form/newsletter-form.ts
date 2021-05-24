@@ -16,8 +16,8 @@ export interface INewsletterFormProps {
 }
 
 NewsletterForm = async (context, { list_id, header_level = 2 }) => {
-	const sygnet = await context.add_effect(
-		SideEffects.File.fromPath(resolve(__dirname, "sygnet-mietowy.svg"))
+	const sygnet = SideEffects.File.fromPath(
+		resolve(__dirname, "sygnet-mietowy.svg")
 	);
 	const h = header_level;
 	const html = /* HTML */ `
@@ -53,6 +53,7 @@ NewsletterForm = async (context, { list_id, header_level = 2 }) => {
 		<script src="https://mailing.sealcode.org/subscription/widget.js"></script>
 	`;
 	await Promise.all([
+		context.add_effect(sygnet),
 		SideEffects.Scss.addFromPath(
 			context,
 			resolve(__dirname, "newsletter-form.scss")

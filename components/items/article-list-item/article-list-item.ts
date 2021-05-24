@@ -13,7 +13,7 @@ export interface IArticleItemProps {
 	header_mode: "above" | "below";
 }
 
-ArticleListItem = async function(
+ArticleListItem = async function (
 	context,
 	{
 		number,
@@ -27,9 +27,10 @@ ArticleListItem = async function(
 ) {
 	let image;
 	if (icon_path) {
-		image = await context.add_effect(SideEffects.File.fromPath(icon_path));
+		image = SideEffects.File.fromPath(icon_path);
 	}
 	await Promise.all([
+		image ? context.add_effect(image) : null,
 		SideEffects.Scss.addFromPath(
 			context,
 			resolve(__dirname, "./article-list-item.scss")

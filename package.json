@@ -23,10 +23,14 @@
 	"dependencies": {
 		"@frctl/mandelbrot": "^1.2.1",
 		"@sealcode/obfuscate-html-attr": "^1.0.0",
+		"@types/markdown-it": "0.0.9",
 		"@types/sharp": "^0.24.0",
 		"bluebird": "^3.7.2",
+		"markdown-it": "^10.0.0",
+		"markdown-it-anchor": "^5.2.5",
 		"rxjs": "^6.5.4",
-		"sharp": "^0.24.1"
+		"sharp": "^0.24.1",
+		"tempfile": "^3.0.0"
 	},
 	"peerDependencies": {
 		"@sealcode/tempseal": "^0.1.3"

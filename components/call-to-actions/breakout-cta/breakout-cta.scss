@@ -4,20 +4,28 @@
 	padding: 3rem 1rem;
 	background-color: $colors-primary;
 
+	@media (max-width: 600px) {
+		padding: 2rem 1rem;
+	}
+
 	&__container {
 		max-width: $layout-container-width;
 		margin: 0 auto;
 		justify-content: center;
 		display: grid;
 		grid-gap: 1rem;
-		grid-template-rows: repeat(2, 1fr);
+		grid-template-rows: repeat(1, 1fr);
 		grid-template-columns: repeat(2, 1fr);
+	}
+	&--with-button {
+		grid-template-rows: repeat(2, 1fr);
 	}
 
 	&__container-left {
 		max-width: px-to-rem(600);
 		h2 {
 			@include font("title", 700);
+			color: $colors-title-text-on-primary;
 			line-height: 2rem;
 			font-size: px-to-rem(38);
 			max-width: 18rem;
@@ -30,11 +38,9 @@
 
 		p {
 			max-width: 18rem;
-			@include font("body", 400);
-			font-size: px-to-rem(38);
-			line-height: 2rem;
-			font-weight: 300;
-			margin: 0 0 1rem px-to-rem(14);
+			@include font("body", 300);
+			font-size: 1rem;
+			line-height: 1rem;
 		}
 	}
 
@@ -69,7 +75,7 @@
 			max-width: 14rem;
 
 			p {
-				font-size: 0.7rem;
+				font-size: 0.8rem;
 				width: 100%;
 				line-height: 1rem;
 				margin: 0;

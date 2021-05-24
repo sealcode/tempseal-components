@@ -16,16 +16,12 @@ interface ITile {
 }
 
 BlogNewsTiles = async (context, tiles: ITile[]) => {
-	console.log("blog tiles start");
-	const icon_url: string = await (
-		await context.add_effect(
-			await SideEffects.File.fromPath(resolve(__dirname, "clock.svg"))
-		)
-	).getUrlPlaceholder();
+	const icon = SideEffects.File.fromPath(resolve(__dirname, "clock.svg"));
+	const icon_url: string = await icon.getUrlPlaceholder();
 
 	const tile_htmls = await Bluebird.map(
-		tiles.filter(e => e),
-		async function(tile) {
+		tiles.filter((e) => e),
+		async function (tile) {
 			const [thumbnail_html, avatar_html] = await Promise.all([
 				SideEffects.ResponsiveImage(context, {
 					image_path: tile.imagePath,
@@ -70,13 +66,13 @@ BlogNewsTiles = async (context, tiles: ITile[]) => {
 		<section class="blog-news-tiles">${tile_htmls.join("\n")}</section>
 	`;
 	await Promise.all([
+		context.add_effect(icon),
 		SideEffects.Scss.addFromPath(
 			context,
 			resolve(__dirname, "blog-news-tiles.scss")
 		),
 		context.add_effect(new SideEffects.HtmlChunk(html)),
 	]);
-	console.log("blog items end");
 };
 
 BlogNewsTiles.identifier = "blog-news-tiles";

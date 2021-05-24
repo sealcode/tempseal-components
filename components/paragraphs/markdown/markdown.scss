@@ -1,0 +1,29 @@
+section.md {
+	max-width: 60ch;
+	margin: 0 auto;
+	width: 100%;
+	padding: 0 1rem;
+	margin-bottom: 1rem;
+	margin-top: 1rem;
+
+	p + p,
+	p + ul,
+	p + ol {
+		margin-top: 1rem;
+	}
+
+	& > h1,
+	& > h2,
+	& > h3,
+	& > h4,
+	& > h5,
+	& > h6 {
+		& + * {
+			margin-top: 0;
+		}
+	}
+
+	& + & {
+		margin-top: 0rem;
+	}
+}
