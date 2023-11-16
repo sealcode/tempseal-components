@@ -30,7 +30,7 @@
 		"markdown-it": "^10.0.0",
 		"markdown-it-anchor": "^5.2.5",
 		"rxjs": "^6.5.4",
-		"sharp": "^0.24.1",
+		"sharp": "^0.32.6",
 		"tempfile": "^3.0.0"
 	},
 	"peerDependencies": {
